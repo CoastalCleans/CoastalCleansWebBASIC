@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Our Mission — CoastalCleans</title>
+  <meta name="description" content="CoastalCleans exists to clean Tampa Bay coastlines, protect sea life, and educate the next generation of ocean stewards.">
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <style>
+    /* Page hero */
+    .page-hero {
+      background: linear-gradient(150deg, var(--raw-blue-900) 0%, var(--raw-blue-700) 100%);
+      padding: var(--space-12) 0 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero::before {
+      content:'';position:absolute;inset:0;
+      background: radial-gradient(ellipse at 60% 30%, rgba(94,150,232,0.12) 0%, transparent 70%);
+      pointer-events:none;
+    }
+    .page-hero-inner { position: relative; z-index: 2; }
+    .page-hero h1   { color: var(--color-text-inverse); margin-bottom: var(--space-5); }
+    .page-hero p    { color: rgba(245,241,232,0.8); font-size: var(--font-size-md); max-width: 58ch; margin-inline: auto; }
+    .page-hero-wave { position: relative; z-index: 3; margin-top: var(--space-9); }
+
+    /* Mission statement */
+    .mission-statement {
+      font-family: var(--font-family-display);
+      font-size: clamp(var(--font-size-xl), 3vw, var(--font-size-3xl));
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-accent-secondary);
+      line-height: var(--line-height-snug);
+      max-width: 24ch;
+      margin-inline: auto;
+      text-align: center;
+      border-left: 4px solid var(--color-accent-primary);
+      padding-left: var(--space-6);
+      text-align: left;
+      max-width: 700px;
+    }
+
+    /* Pillars */
+    .pillars-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-7);
+      margin-top: var(--space-9);
+    }
+    .pillar-card {
+      background: var(--card-bg);
+      border-radius: var(--card-radius);
+      box-shadow: var(--card-shadow);
+      border: var(--card-border);
+      padding: var(--space-8);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+      transition: transform var(--duration-normal) var(--easing-out),
+                  box-shadow var(--duration-normal) var(--easing-out);
+    }
+    .pillar-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+    .pillar-icon {
+      width: 64px; height: 64px;
+      border-radius: var(--border-radius-lg);
+      background: linear-gradient(135deg, rgba(26,79,168,0.1), rgba(26,79,168,0.05));
+      display: flex; align-items: center; justify-content: center;
+      border: 1px solid rgba(26,79,168,0.12);
+    }
+    .pillar-icon svg { color: var(--color-accent-secondary); }
+    .pillar-card h3 { color: var(--color-text-primary); }
+    .pillar-card p  { color: var(--color-text-secondary); font-size: var(--font-size-base); line-height: var(--line-height-relaxed); max-width: none; }
+    .pillar-number {
+      font-family: var(--font-family-display);
+      font-size: var(--font-size-4xl);
+      font-weight: var(--font-weight-bold);
+      color: rgba(26,79,168,0.08);
+      line-height: 1;
+      margin-bottom: calc(var(--space-3) * -1);
+    }
+
+    /* Impact strip */
+    .impact-strip {
+      background: var(--raw-blue-700);
+      padding-block: var(--space-10);
+    }
+    .impact-strip .stat-number { color: var(--color-text-inverse); }
+    .impact-strip .stat-label  { color: rgba(245,241,232,0.7); }
+    .impact-strip .stat-card   { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); }
+
+    /* CTA section */
+    .mission-cta {
+      text-align: center;
+      padding-block: var(--space-11);
+    }
+    .mission-cta h2 { margin-bottom: var(--space-5); }
+    .mission-cta p  { margin-inline: auto; color: var(--color-text-secondary); margin-bottom: var(--space-7); max-width: 50ch; }
+
+    @media (max-width: 768px) {
+      .pillars-grid  { grid-template-columns: 1fr; }
+      .mission-split { grid-template-columns: 1fr !important; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="site-nav" id="site-header">
+  <div class="nav-inner container">
+    <a href="index.html" class="nav-logo-link" aria-label="CoastalCleans — Home">
+      <img src="assets/logo.jpg" alt="CoastalCleans logo" class="nav-logo" width="44" height="44">
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="mission.html"      class="nav-link">Our Mission</a>
+      <a href="team.html"         class="nav-link">Our Team</a>
+      <a href="get-involved.html" class="nav-link">Get Involved</a>
+      <a href="history.html"      class="nav-link">Our History</a>
+      <a href="contact.html"      class="nav-link">Contact Us</a>
+    </nav>
+    <a href="donate.html" class="cta-pill nav-cta">Donate</a>
+    <button class="nav-burger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-drawer">
+      <span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span>
+    </button>
+  </div>
+</header>
+<div class="nav-drawer" id="nav-drawer" aria-hidden="true" role="dialog" aria-label="Mobile navigation">
+  <nav class="drawer-links">
+    <a href="mission.html"      class="drawer-link">Our Mission</a>
+    <a href="team.html"         class="drawer-link">Our Team</a>
+    <a href="get-involved.html" class="drawer-link">Get Involved</a>
+    <a href="history.html"      class="drawer-link">Our History</a>
+    <a href="contact.html"      class="drawer-link">Contact Us</a>
+  </nav>
+  <a href="donate.html" class="cta-pill drawer-cta">Donate</a>
+</div>
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
+<main id="main">
+
+  <!-- Page Hero -->
+  <section class="page-hero" aria-label="Our Mission">
+    <div class="container page-hero-inner">
+      <span class="eyebrow" style="color:var(--color-accent-primary)">Why We Exist</span>
+      <h1>Our Mission</h1>
+      <p>We exist to remove plastic from Tampa Bay's coastlines, protect marine life, and build a community of ocean stewards — one cleanup at a time.</p>
+    </div>
+    <div class="page-hero-wave">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;" aria-hidden="true">
+        <path d="M0,50 C480,90 960,10 1440,50 L1440,80 L0,80 Z" fill="var(--color-bg-secondary)" opacity="0.5"/>
+        <path d="M0,35 C540,80 900,5 1440,35 L1440,80 L0,80 Z" fill="var(--color-bg-secondary)"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Mission Statement -->
+  <section class="section section--light">
+    <div class="container">
+      <div class="mission-split" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-10);align-items:center;">
+        <div>
+          <span class="eyebrow eyebrow--blue">Mission Statement</span>
+          <blockquote class="mission-statement">
+            To keep Tampa Bay's coastlines free of plastic — for the sea life that depends on them and the communities that love them.
+          </blockquote>
+        </div>
+        <div aria-hidden="true" style="display:flex;justify-content:center;">
+          <svg class="float" viewBox="0 0 260 170" xmlns="http://www.w3.org/2000/svg" style="width:min(240px,100%)" aria-hidden="true">
+            <path d="M52,85 C20,85 6,70 6,52 C6,34 22,18 48,14 C68,10 110,8 148,12 C175,15 204,26 218,46 C228,59 225,74 214,83 C203,92 178,98 150,100 C118,102 82,102 52,95 C38,91 26,88 22,85 C14,82 14,82 52,85 Z" fill="#1A4FA8"/>
+            <path d="M218,52 C228,42 245,32 248,46 C250,56 242,66 232,68 C224,70 218,65 218,60 Z" fill="#1A4FA8"/>
+            <path d="M218,72 C226,76 236,82 238,94 C240,104 230,110 222,104 C214,98 214,86 218,78 Z" fill="#1A4FA8"/>
+            <path d="M78,14 C62,6 42,2 44,14 C46,24 64,26 78,18 Z" fill="#143872"/>
+            <path d="M78,100 C62,108 42,112 44,100 C46,90 64,90 78,96 Z" fill="#143872"/>
+            <ellipse cx="130" cy="50" rx="72" ry="26" fill="#2563C4" opacity="0.15"/>
+            <circle cx="28" cy="62" r="6" fill="white"/>
+            <circle cx="30" cy="62" r="4" fill="#0A1520"/>
+            <circle cx="29" cy="60" r="1.5" fill="white" opacity="0.75"/>
+            <line x1="2" y1="50" x2="20" y2="49" stroke="rgba(255,255,255,0.32)" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="2" y1="55" x2="20" y2="55" stroke="rgba(255,255,255,0.32)" stroke-width="1.8" stroke-linecap="round"/>
+            <line x1="2" y1="60" x2="20" y2="61" stroke="rgba(255,255,255,0.32)" stroke-width="1.8" stroke-linecap="round"/>
+          </svg>
+        </div>
+      </div>
+</div>
+  </section>
+
+  <!-- Core Values / Pillars -->
+  <section class="section section--cream">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow eyebrow--blue">Core Values</span>
+        <h2>Three pillars of action</h2>
+        <p>Every CoastalCleans event, partnership, and decision traces back to one of these three commitments.</p>
+      </div>
+      <div class="pillars-grid">
+
+        <div class="pillar-card">
+          <div class="pillar-number">01</div>
+          <div class="pillar-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
+          </div>
+          <h3>Clean</h3>
+          <p>Direct action — gloves, bags, and hard work. We organize and run hands-on cleanup events that measurably reduce plastic on Tampa Bay's shores. Every pound removed is a pound that won't enter the ocean.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-number">02</div>
+          <div class="pillar-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg>
+          </div>
+          <h3>Protect</h3>
+          <p>Marine life can't speak for itself. We advocate for sea turtle nesting zones, manatee habitats, and responsible coastal development. Our data from cleanups informs local environmental policy conversations.</p>
+        </div>
+
+        <div class="pillar-card">
+          <div class="pillar-number">03</div>
+          <div class="pillar-icon">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/></svg>
+          </div>
+          <h3>Educate</h3>
+          <p>Long-term change requires understanding. We run school programs, tabling events, and social media campaigns that connect plastic pollution to everyday choices — and show what everyone can do about it.</p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- Impact Stats -->
+  <section class="impact-strip">
+    <div class="container">
+      <div class="section-header" style="margin-bottom:var(--space-8);">
+        <span class="eyebrow">Impact in Numbers</span>
+        <h2 style="color:var(--color-text-inverse)">Results since founding</h2>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card"><div class="stat-number">47</div><div class="stat-label">Beach Events</div></div>
+        <div class="stat-card"><div class="stat-number">12,400<span style="font-size:0.55em">lbs</span></div><div class="stat-label">Plastic Removed</div></div>
+        <div class="stat-card"><div class="stat-number">340</div><div class="stat-label">Volunteers</div></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="section section--cream">
+    <div class="container mission-cta">
+      <span class="eyebrow eyebrow--blue">Ready to Act?</span>
+      <h2>Join the mission</h2>
+      <p>Whether you volunteer, donate, or spread the word — every action protects the coast.</p>
+      <a href="get-involved.html" class="cta-pill cta-pill--lg">Get Involved</a>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner container">
+    <div class="footer-brand">
+      <a href="index.html" aria-label="CoastalCleans — Home">
+        <img src="assets/logo.jpg" alt="CoastalCleans" class="footer-logo" width="52" height="52">
+      </a>
+      <p class="footer-tagline">Cleaning coastlines,<br>saving sea life.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <p class="footer-col-heading">Navigation</p>
+      <a href="mission.html">Our Mission</a>
+      <a href="team.html">Our Team</a>
+      <a href="get-involved.html">Get Involved</a>
+      <a href="history.html">Our History</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="donate.html">Donate</a>
+    </nav>
+    <div class="footer-social">
+      <p class="footer-col-heading">Follow Us</p>
+      <div class="social-icons">
+        <a href="#" class="social-icon" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" class="social-icon" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="#" class="social-icon" aria-label="X"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.7 5.5 4.3 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 CoastalCleans. Tampa Bay Chapter. All rights reserved.</p>
+    <p class="footer-email"><a href="mailto:coastal.clean.30@gmail.com">coastal.clean.30@gmail.com</a></p>
+  </div>
+</footer>
+
+<script src="js/nav.js"></script>
+</body>
+</html>

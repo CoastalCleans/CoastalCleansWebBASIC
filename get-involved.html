@@ -1,0 +1,391 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Get Involved — CoastalCleans</title>
+  <meta name="description" content="Volunteer, donate, or become a corporate partner with CoastalCleans in Tampa Bay.">
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <style>
+    .page-hero {
+      background: linear-gradient(150deg, var(--raw-blue-900) 0%, var(--raw-blue-700) 100%);
+      padding: var(--space-12) 0 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero h1 { color: var(--color-text-inverse); margin-bottom: var(--space-5); }
+    .page-hero p  { color: rgba(245,241,232,0.8); font-size: var(--font-size-md); max-width: 52ch; margin-inline: auto; }
+
+    /* Tracks */
+    .track {
+      padding-block: var(--space-11);
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-12);
+      align-items: center;
+    }
+    .track--reverse { direction: rtl; }
+    .track--reverse > * { direction: ltr; }
+
+    .track-visual {
+      border-radius: var(--border-radius-xl);
+      padding: var(--space-10);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 280px;
+      position: relative;
+      overflow: hidden;
+    }
+    .track-visual--coral  { background: linear-gradient(135deg, #d45a2e22 0%, #e8663a18 100%); border: 1px solid rgba(232,102,58,0.15); }
+    .track-visual--blue   { background: linear-gradient(135deg, #1a4fa812 0%, #1a4fa80a 100%); border: 1px solid rgba(26,79,168,0.12); }
+    .track-visual--navy   { background: linear-gradient(135deg, #0f2a5e18 0%, #0f2a5e0e 100%); border: 1px solid rgba(15,42,94,0.12); }
+    .track-visual svg     { opacity: 0.4; }
+
+    .track-badge {
+      position: absolute;
+      top: var(--space-5);
+      left: var(--space-5);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-bold);
+      letter-spacing: var(--letter-spacing-wider);
+      text-transform: uppercase;
+      padding: var(--space-1) var(--space-4);
+      border-radius: var(--border-radius-full);
+    }
+    .track-badge--coral { background: rgba(232,102,58,0.15); color: var(--color-accent-primary); }
+    .track-badge--blue  { background: rgba(26,79,168,0.12); color: var(--color-accent-secondary); }
+    .track-badge--navy  { background: rgba(15,42,94,0.12); color: var(--raw-blue-700); }
+
+    .track-content { display: flex; flex-direction: column; gap: var(--space-5); }
+    .track-content h2 { margin-bottom: 0; }
+    .track-content p  { color: var(--color-text-secondary); font-size: var(--font-size-md); line-height: var(--line-height-relaxed); max-width: 48ch; }
+
+    .track-perks {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+    }
+    .track-perks li {
+      display: flex;
+      align-items: flex-start;
+      gap: var(--space-3);
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+    }
+    .track-perks li::before {
+      content: '';
+      display: block;
+      width: 18px; height: 18px;
+      border-radius: 50%;
+      background: var(--color-accent-primary);
+      flex-shrink: 0;
+      margin-top: 1px;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'%3E%3Cpolyline points='20 6 9 17 4 12' fill='none' stroke='white' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E");
+      background-size: 12px;
+      background-repeat: no-repeat;
+      background-position: center;
+    }
+
+    /* Dividers */
+    .track-divider {
+      border: none;
+      border-top: 1px solid var(--color-border-secondary);
+      margin: 0;
+    }
+
+    /* Events */
+    .events-list {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-4);
+    }
+    .event-item {
+      display: flex;
+      gap: var(--space-6);
+      align-items: flex-start;
+      background: var(--card-bg);
+      border-radius: var(--border-radius-lg);
+      padding: var(--space-6);
+      border: var(--card-border);
+    }
+    .event-date {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      background: var(--color-accent-secondary);
+      color: white;
+      border-radius: var(--border-radius-md);
+      padding: var(--space-3) var(--space-4);
+      min-width: 64px;
+      flex-shrink: 0;
+    }
+    .event-month { font-size: var(--font-size-xs); font-weight: var(--font-weight-bold); text-transform: uppercase; letter-spacing: var(--letter-spacing-wide); opacity: 0.85; }
+    .event-day   { font-family: var(--font-family-display); font-size: var(--font-size-2xl); font-weight: var(--font-weight-bold); line-height: 1; }
+    .event-info  { flex: 1; }
+    .event-title {
+      font-family: var(--font-family-display);
+      font-size: var(--font-size-lg);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-2);
+    }
+    .event-meta {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-secondary);
+      display: flex;
+      gap: var(--space-4);
+      flex-wrap: wrap;
+    }
+    .event-meta span { display: flex; align-items: center; gap: var(--space-2); }
+    .event-cta { flex-shrink: 0; display: flex; align-items: center; }
+
+    @media (max-width: 768px) {
+      .track { grid-template-columns: 1fr; gap: var(--space-8); }
+      .track--reverse { direction: ltr; }
+      .event-item { flex-direction: column; }
+      .event-cta  { width: 100%; }
+      .event-cta a { width: 100%; justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="site-nav" id="site-header">
+  <div class="nav-inner container">
+    <a href="index.html" class="nav-logo-link" aria-label="CoastalCleans — Home">
+      <img src="assets/logo.jpg" alt="CoastalCleans logo" class="nav-logo" width="44" height="44">
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="mission.html"      class="nav-link">Our Mission</a>
+      <a href="team.html"         class="nav-link">Our Team</a>
+      <a href="get-involved.html" class="nav-link">Get Involved</a>
+      <a href="history.html"      class="nav-link">Our History</a>
+      <a href="contact.html"      class="nav-link">Contact Us</a>
+    </nav>
+    <a href="donate.html" class="cta-pill nav-cta">Donate</a>
+    <button class="nav-burger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-drawer">
+      <span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span>
+    </button>
+  </div>
+</header>
+<div class="nav-drawer" id="nav-drawer" aria-hidden="true" role="dialog" aria-label="Mobile navigation">
+  <nav class="drawer-links">
+    <a href="mission.html"      class="drawer-link">Our Mission</a>
+    <a href="team.html"         class="drawer-link">Our Team</a>
+    <a href="get-involved.html" class="drawer-link">Get Involved</a>
+    <a href="history.html"      class="drawer-link">Our History</a>
+    <a href="contact.html"      class="drawer-link">Contact Us</a>
+  </nav>
+  <a href="donate.html" class="cta-pill drawer-cta">Donate</a>
+</div>
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
+<main id="main">
+
+  <section class="page-hero" aria-label="Get Involved">
+    <div class="container">
+      <span class="eyebrow" style="color:var(--color-accent-primary)">Take Action</span>
+      <h1>Get Involved</h1>
+      <p>Three ways to make a difference for Tampa Bay. Every one of them matters, and none of them require experience.</p>
+    </div>
+    <div style="margin-top:var(--space-9);">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;" aria-hidden="true">
+        <path d="M0,50 C480,90 960,10 1440,50 L1440,80 L0,80 Z" fill="var(--color-bg-primary)" opacity="0.5"/>
+        <path d="M0,35 C540,80 900,5 1440,35 L1440,80 L0,80 Z" fill="var(--color-bg-primary)"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- Track 1: Volunteer -->
+  <section class="section--cream" id="volunteer">
+    <div class="container">
+      <div class="track">
+        <div class="track-visual track-visual--coral">
+          <div class="track-badge track-badge--coral">01 — Free</div>
+          <svg width="180" height="180" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-primary)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+        </div>
+        <div class="track-content">
+          <span class="eyebrow">Track 01</span>
+          <h2>Volunteer</h2>
+          <p>Show up, dig in, and leave the beach better than you found it. No experience needed — we supply the gloves, bags, and guidance. You bring the energy.</p>
+          <ul class="track-perks" aria-label="What you get">
+            <li>Free gloves, trash bags, and equipment at every event</li>
+            <li>All-levels welcome — families, students, retirees</li>
+            <li>Digital cleanup certificate for your records</li>
+            <li>Community cookout at quarterly mega-events</li>
+          </ul>
+          <div>
+            <a href="contact.html" class="cta-pill">Sign Up Free →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="track-divider">
+
+  <!-- Track 2: Donate -->
+  <section class="section--cream" id="donate">
+    <div class="container">
+      <div class="track track--reverse">
+        <div class="track-visual track-visual--blue">
+          <div class="track-badge track-badge--blue">02 — Any Amount</div>
+          <svg width="180" height="180" viewBox="0 0 24 24" fill="none" stroke="var(--color-accent-secondary)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+        </div>
+        <div class="track-content">
+          <span class="eyebrow eyebrow--blue">Track 02</span>
+          <h2>Donate</h2>
+          <p>Not everyone can make it to the beach on a Saturday morning — but your dollars can. Every contribution funds cleanup supplies, site permits, and education programs.</p>
+          <ul class="track-perks">
+            <li>$25 funds gloves and bags for 10 volunteers</li>
+            <li>$50 covers a site permit for one cleanup event</li>
+            <li>$100 sponsors a school education session</li>
+            <li>Quarterly impact report sent to all donors</li>
+          </ul>
+          <div>
+            <a href="donate.html" class="cta-pill">Donate Now →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <hr class="track-divider">
+
+  <!-- Track 3: Corporate Partner -->
+  <section class="section--cream" id="partner">
+    <div class="container">
+      <div class="track">
+        <div class="track-visual track-visual--navy">
+          <div class="track-badge track-badge--navy">03 — Orgs &amp; Businesses</div>
+          <svg width="180" height="180" viewBox="0 0 24 24" fill="none" stroke="var(--raw-blue-700)" stroke-width="1" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="track-content">
+          <span class="eyebrow">Track 03</span>
+          <h2>Corporate Partner</h2>
+          <p>Align your organization with environmental action that your employees and customers care about. We coordinate volunteer days, co-branding, and impact reporting for partners of all sizes.</p>
+          <ul class="track-perks">
+            <li>Private cleanup events for your team (25–200 people)</li>
+            <li>Co-branded event photos and social content</li>
+            <li>Partner logo on our website and event materials</li>
+            <li>Custom impact report with data on pounds collected</li>
+          </ul>
+          <div>
+            <a href="contact.html" class="cta-pill">Get in Touch →</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Upcoming Events -->
+  <section class="section section--light" id="events">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow eyebrow--blue">Join Us</span>
+        <h2>Upcoming events</h2>
+        <p>All events are free and open to the public. Bring water, sunscreen, and enthusiasm.</p>
+      </div>
+      <div class="events-list">
+
+        <article class="event-item">
+          <div class="event-date" aria-label="May 10th">
+            <span class="event-month">May</span>
+            <span class="event-day">10</span>
+          </div>
+          <div class="event-info">
+            <div class="event-title">Clearwater Beach Morning Cleanup</div>
+            <div class="event-meta">
+              <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 7:30 AM – 10:00 AM</span>
+              <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Pier 60 Pavilion, Clearwater</span>
+              <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> 45 spots open</span>
+            </div>
+          </div>
+          <div class="event-cta">
+            <a href="contact.html" class="cta-outline">RSVP</a>
+          </div>
+        </article>
+
+        <article class="event-item">
+          <div class="event-date" aria-label="May 24th">
+            <span class="event-month">May</span>
+            <span class="event-day">24</span>
+          </div>
+          <div class="event-info">
+            <div class="event-title">St. Pete Beach Mega-Cleanup (Quarterly)</div>
+            <div class="event-meta">
+              <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 8:00 AM – 1:00 PM</span>
+              <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> North Beach Access, St. Pete Beach</span>
+              <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> 120 spots · BBQ included</span>
+            </div>
+          </div>
+          <div class="event-cta">
+            <a href="contact.html" class="cta-outline">RSVP</a>
+          </div>
+        </article>
+
+        <article class="event-item">
+          <div class="event-date" aria-label="June 7th">
+            <span class="event-month">Jun</span>
+            <span class="event-day">7</span>
+          </div>
+          <div class="event-info">
+            <div class="event-title">Caladesi Island Kayak Cleanup</div>
+            <div class="event-meta">
+              <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 7:00 AM – 12:00 PM</span>
+              <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Honeymoon Island Ferry Dock</span>
+              <span><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> 20 spots · Kayak experience required</span>
+            </div>
+          </div>
+          <div class="event-cta">
+            <a href="contact.html" class="cta-outline">RSVP</a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner container">
+    <div class="footer-brand">
+      <a href="index.html" aria-label="CoastalCleans — Home"><img src="assets/logo.jpg" alt="CoastalCleans" class="footer-logo" width="52" height="52"></a>
+      <p class="footer-tagline">Cleaning coastlines,<br>saving sea life.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <p class="footer-col-heading">Navigation</p>
+      <a href="mission.html">Our Mission</a><a href="team.html">Our Team</a>
+      <a href="get-involved.html">Get Involved</a><a href="history.html">Our History</a>
+      <a href="contact.html">Contact Us</a><a href="donate.html">Donate</a>
+    </nav>
+    <div class="footer-social">
+      <p class="footer-col-heading">Follow Us</p>
+      <div class="social-icons">
+        <a href="#" class="social-icon" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" class="social-icon" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="#" class="social-icon" aria-label="X"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.7 5.5 4.3 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 CoastalCleans. Tampa Bay Chapter. All rights reserved.</p>
+    <p class="footer-email"><a href="mailto:coastal.clean.30@gmail.com">coastal.clean.30@gmail.com</a></p>
+  </div>
+</footer>
+
+<script src="js/nav.js"></script>
+</body>
+</html>

@@ -1,0 +1,235 @@
+/* global.css — Shared layout, typography, utilities. Requires: tokens.css */
+
+/* ─── Container ─── */
+.container {
+  max-width: var(--max-width-page);
+  margin-inline: auto;
+  padding-inline: var(--space-6);
+}
+.container--narrow { max-width: 780px; margin-inline: auto; padding-inline: var(--space-6); }
+
+/* ─── Section ─── */
+.section { padding-block: var(--section-padding-y); }
+.section--navy  { background-color: var(--color-bg-footer); color: var(--color-text-inverse); }
+.section--cream { background-color: var(--color-bg-primary); }
+.section--light { background-color: var(--color-bg-secondary); }
+
+/* ─── Typography ─── */
+h1, h2, h3, h4 {
+  font-family: var(--font-family-display);
+  line-height: var(--line-height-tight);
+  color: var(--color-text-primary);
+}
+h1 {
+  font-size: clamp(var(--font-size-3xl), 5vw, var(--font-size-5xl));
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-tight);
+}
+h2 {
+  font-size: clamp(var(--font-size-2xl), 3.5vw, var(--font-size-4xl));
+  font-weight: var(--font-weight-semibold);
+}
+h3 { font-size: clamp(var(--font-size-xl), 2.5vw, var(--font-size-2xl)); font-weight: var(--font-weight-semibold); }
+h4 { font-size: var(--font-size-lg); font-weight: var(--font-weight-semibold); }
+p  { line-height: var(--line-height-normal); }
+
+.eyebrow {
+  display: inline-block;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wider);
+  text-transform: uppercase;
+  color: var(--color-accent-primary);
+  margin-bottom: var(--space-4);
+}
+.eyebrow--blue { color: var(--color-accent-secondary); }
+
+/* ─── CTA Buttons ─── */
+.cta-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  background-color: var(--cta-bg);
+  color: var(--cta-text);
+  font-family: var(--font-family-body);
+  font-size: var(--cta-font-size);
+  font-weight: var(--cta-font-weight);
+  letter-spacing: var(--cta-letter-spacing);
+  padding: var(--cta-padding);
+  border-radius: var(--cta-radius);
+  border: none;
+  cursor: pointer;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    background-color var(--duration-fast) var(--easing-default),
+    transform var(--duration-fast) var(--easing-bounce),
+    box-shadow var(--duration-fast) var(--easing-default);
+}
+.cta-pill:hover {
+  background-color: var(--cta-bg-hover);
+  color: var(--cta-text);
+  transform: scale(1.04);
+}
+.cta-pill:active {
+  transform: scale(0.98);
+  background-color: var(--color-accent-primary-active);
+}
+.cta-pill--lg { font-size: var(--font-size-base); padding: var(--space-4) var(--space-9); }
+
+.cta-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--color-accent-secondary);
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
+  padding: var(--space-3) var(--space-6);
+  border-radius: var(--border-radius-full);
+  border: 2px solid var(--color-accent-secondary);
+  cursor: pointer;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition:
+    background-color var(--duration-fast) var(--easing-default),
+    color var(--duration-fast) var(--easing-default),
+    transform var(--duration-fast) var(--easing-bounce);
+}
+.cta-outline:hover { background-color: var(--color-accent-secondary); color: #fff; transform: scale(1.03); }
+.cta-outline--inverse { color: var(--color-text-inverse); border-color: var(--color-text-inverse); }
+.cta-outline--inverse:hover { background-color: var(--color-text-inverse); color: var(--raw-blue-900); }
+
+/* ─── Wave Divider ─── */
+.wave-divider { display: block; line-height: 0; overflow: hidden; position: relative; }
+.wave-divider svg { display: block; width: 100%; }
+
+/* ─── Float Animation ─── */
+.float {
+  animation: manatee-float 4s ease-in-out infinite;
+}
+@keyframes manatee-float {
+  0%, 100% { transform: translateY(0px) rotate(-1deg); }
+  50%       { transform: translateY(-16px) rotate(1deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .float { animation: none; }
+}
+
+/* ─── Stat Grid ─── */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+@media (max-width: 640px) { .stat-grid { grid-template-columns: 1fr; } }
+
+.stat-card {
+  text-align: center;
+  padding: var(--space-8) var(--space-6);
+  background: var(--card-bg);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  border: var(--card-border);
+}
+.stat-number {
+  font-family: var(--font-family-display);
+  font-size: clamp(var(--font-size-3xl), 5vw, var(--font-size-4xl));
+  font-weight: var(--font-weight-bold);
+  color: var(--color-accent-secondary);
+  line-height: 1;
+  margin-bottom: var(--space-3);
+}
+.stat-label {
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-secondary);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  max-width: none;
+}
+
+/* ─── Section Header ─── */
+.section-header { text-align: center; margin-bottom: var(--space-9); }
+.section-header h2 { margin-bottom: var(--space-4); }
+.section-header p { margin-inline: auto; color: var(--color-text-secondary); font-size: var(--font-size-md); max-width: 60ch; }
+
+/* ─── Card ─── */
+.card {
+  background: var(--card-bg);
+  border-radius: var(--card-radius);
+  box-shadow: var(--card-shadow);
+  border: var(--card-border);
+  padding: var(--card-padding);
+  transition:
+    transform var(--duration-normal) var(--easing-out),
+    box-shadow var(--duration-normal) var(--easing-out);
+}
+.card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
+
+/* ─── Form Base ─── */
+.form-group { display: flex; flex-direction: column; gap: var(--space-2); margin-bottom: var(--space-6); }
+.form-label {
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  color: var(--color-text-secondary);
+  letter-spacing: var(--letter-spacing-wide);
+  text-transform: uppercase;
+  max-width: none;
+}
+.form-input,
+.form-textarea,
+.form-select {
+  background: var(--input-bg);
+  border: var(--input-border);
+  border-radius: var(--input-radius);
+  padding: var(--input-padding);
+  font-family: var(--font-family-body);
+  font-size: var(--input-font-size);
+  color: var(--color-text-primary);
+  width: 100%;
+  transition:
+    border-color var(--duration-fast) var(--easing-default),
+    box-shadow var(--duration-fast) var(--easing-default);
+}
+.form-input:focus,
+.form-textarea:focus {
+  outline: none;
+  border: var(--input-border-focus);
+  box-shadow: var(--input-shadow-focus);
+}
+.form-input::placeholder,
+.form-textarea::placeholder { color: var(--color-text-tertiary); }
+.form-textarea { min-height: 140px; resize: vertical; }
+.form-error { font-size: var(--font-size-xs); color: var(--color-status-error); display: none; margin-top: var(--space-1); }
+.form-group.has-error .form-input,
+.form-group.has-error .form-textarea { border-color: var(--color-status-error) !important; box-shadow: 0 0 0 3px rgba(201,54,54,0.2); }
+.form-group.has-error .form-error { display: block; }
+
+/* ─── Callout Box ─── */
+.callout-box {
+  background: var(--color-bg-footer);
+  color: var(--color-text-inverse);
+  border-radius: var(--border-radius-lg);
+  padding: var(--space-8) var(--space-9);
+}
+.callout-box h3 { color: var(--color-text-inverse); margin-bottom: var(--space-4); }
+.callout-box p  { color: rgba(245,241,232,0.8); max-width: 52ch; }
+
+/* ─── Utilities ─── */
+.sr-only {
+  position: absolute; width: 1px; height: 1px;
+  padding: 0; margin: -1px; overflow: hidden;
+  clip: rect(0,0,0,0); white-space: nowrap; border-width: 0;
+}
+.text-center { text-align: center; }
+.mt-auto { margin-top: auto; }
+.gap-sm { gap: var(--space-4); }
+.flex { display: flex; }
+.flex-col { flex-direction: column; }
+.items-center { align-items: center; }
+.justify-center { justify-content: center; }

@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Contact Us — CoastalCleans</title>
+  <meta name="description" content="Get in touch with CoastalCleans Tampa Bay for volunteer sign-ups, partnerships, and general inquiries.">
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <style>
+    .page-hero {
+      background: linear-gradient(150deg, var(--raw-blue-900) 0%, var(--raw-blue-700) 100%);
+      padding: var(--space-12) 0 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero h1 { color: var(--color-text-inverse); margin-bottom: var(--space-5); }
+    .page-hero p  { color: rgba(245,241,232,0.8); font-size: var(--font-size-md); max-width: 52ch; margin-inline: auto; }
+
+    .contact-layout {
+      display: grid;
+      grid-template-columns: 1fr 420px;
+      gap: var(--space-10);
+      align-items: start;
+      padding-block: var(--space-11);
+    }
+
+    /* Form card */
+    .contact-form-card {
+      background: var(--card-bg);
+      border-radius: var(--border-radius-xl);
+      box-shadow: var(--shadow-lg);
+      border: var(--card-border);
+      padding: var(--space-9);
+    }
+    .contact-form-card h2 { margin-bottom: var(--space-2); font-size: var(--font-size-2xl); }
+    .contact-form-card > p { color: var(--color-text-secondary); margin-bottom: var(--space-7); max-width: none; }
+
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: var(--space-5); }
+    @media (max-width: 560px) { .form-row { grid-template-columns: 1fr; } }
+
+    .submit-btn {
+      width: 100%;
+      padding: var(--space-4) var(--space-6);
+      font-size: var(--font-size-base);
+      margin-top: var(--space-2);
+    }
+
+    /* Form success state */
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: var(--space-10) var(--space-8);
+    }
+    .form-success.is-visible { display: block; }
+    .success-icon {
+      width: 72px; height: 72px;
+      background: rgba(45,138,94,0.1);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto var(--space-6);
+    }
+    .success-icon svg { color: var(--color-status-success); }
+    .form-success h3 { margin-bottom: var(--space-4); }
+    .form-success p  { color: var(--color-text-secondary); max-width: none; }
+
+    /* Side info */
+    .contact-info { display: flex; flex-direction: column; gap: var(--space-6); }
+    .info-item {
+      display: flex;
+      gap: var(--space-4);
+      align-items: flex-start;
+    }
+    .info-icon {
+      width: 44px; height: 44px;
+      border-radius: var(--border-radius-md);
+      background: rgba(26,79,168,0.08);
+      border: 1px solid rgba(26,79,168,0.12);
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      color: var(--color-accent-secondary);
+    }
+    .info-text h4 { font-size: var(--font-size-base); margin-bottom: var(--space-1); }
+    .info-text p, .info-text a { font-size: var(--font-size-sm); color: var(--color-text-secondary); max-width: none; }
+    .info-text a:hover { color: var(--color-text-link); }
+
+    /* Corporate callout */
+    .corporate-callout {
+      background: var(--color-bg-footer);
+      border-radius: var(--border-radius-xl);
+      padding: var(--space-8);
+      margin-top: var(--space-2);
+    }
+    .corporate-callout h3 { color: var(--color-text-inverse); font-size: var(--font-size-xl); margin-bottom: var(--space-3); }
+    .corporate-callout p  { color: rgba(245,241,232,0.75); font-size: var(--font-size-sm); margin-bottom: var(--space-5); max-width: none; }
+    .corporate-callout a  { color: var(--color-accent-primary); font-weight: var(--font-weight-semibold); text-decoration: none; }
+    .corporate-callout a:hover { text-decoration: underline; }
+
+    @media (max-width: 900px) {
+      .contact-layout { grid-template-columns: 1fr; }
+      .contact-form-card { order: 1; }
+      .contact-info { order: 2; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="site-nav" id="site-header">
+  <div class="nav-inner container">
+    <a href="index.html" class="nav-logo-link" aria-label="CoastalCleans — Home">
+      <img src="assets/logo.jpg" alt="CoastalCleans logo" class="nav-logo" width="44" height="44">
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="mission.html"      class="nav-link">Our Mission</a>
+      <a href="team.html"         class="nav-link">Our Team</a>
+      <a href="get-involved.html" class="nav-link">Get Involved</a>
+      <a href="history.html"      class="nav-link">Our History</a>
+      <a href="contact.html"      class="nav-link">Contact Us</a>
+    </nav>
+    <a href="donate.html" class="cta-pill nav-cta">Donate</a>
+    <button class="nav-burger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-drawer">
+      <span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span>
+    </button>
+  </div>
+</header>
+<div class="nav-drawer" id="nav-drawer" aria-hidden="true" role="dialog" aria-label="Mobile navigation">
+  <nav class="drawer-links">
+    <a href="mission.html"      class="drawer-link">Our Mission</a>
+    <a href="team.html"         class="drawer-link">Our Team</a>
+    <a href="get-involved.html" class="drawer-link">Get Involved</a>
+    <a href="history.html"      class="drawer-link">Our History</a>
+    <a href="contact.html"      class="drawer-link">Contact Us</a>
+  </nav>
+  <a href="donate.html" class="cta-pill drawer-cta">Donate</a>
+</div>
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
+<main id="main">
+
+  <section class="page-hero" aria-label="Contact Us">
+    <div class="container">
+      <span class="eyebrow" style="color:var(--color-accent-primary)">We'd Love to Hear From You</span>
+      <h1>Contact Us</h1>
+      <p>Questions, partnership inquiries, volunteer sign-ups, or just a hello — we read every message.</p>
+    </div>
+    <div style="margin-top:var(--space-9);">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;" aria-hidden="true">
+        <path d="M0,50 C480,90 960,10 1440,50 L1440,80 L0,80 Z" fill="var(--color-bg-secondary)" opacity="0.5"/>
+        <path d="M0,35 C540,80 900,5 1440,35 L1440,80 L0,80 Z" fill="var(--color-bg-secondary)"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="section section--light" style="padding-top:var(--space-7);">
+    <div class="container">
+      <div class="contact-layout">
+
+        <!-- Contact Form -->
+        <div>
+          <div class="contact-form-card">
+            <h2>Send a message</h2>
+            <p>We typically respond within one business day.</p>
+
+            <!-- Form -->
+            <form id="contact-form" novalidate>
+              <div class="form-row">
+                <div class="form-group" id="group-name">
+                  <label class="form-label" for="name">Full Name <span aria-hidden="true">*</span></label>
+                  <input class="form-input" type="text" id="name" name="name" autocomplete="name" placeholder="Maria Santos" required aria-required="true" aria-describedby="name-error">
+                  <span class="form-error" id="name-error" role="alert">Please enter your name.</span>
+                </div>
+                <div class="form-group" id="group-email">
+                  <label class="form-label" for="email">Email Address <span aria-hidden="true">*</span></label>
+                  <input class="form-input" type="email" id="email" name="email" autocomplete="email" placeholder="you@example.com" required aria-required="true" aria-describedby="email-error">
+                  <span class="form-error" id="email-error" role="alert">Please enter a valid email address.</span>
+                </div>
+              </div>
+
+              <div class="form-group" id="group-org">
+                <label class="form-label" for="org">Organization <span style="font-weight:400;text-transform:none;letter-spacing:0;color:var(--color-text-tertiary);">(Optional)</span></label>
+                <input class="form-input" type="text" id="org" name="org" autocomplete="organization" placeholder="Your company or school">
+              </div>
+
+              <div class="form-group" id="group-message">
+                <label class="form-label" for="message">Message <span aria-hidden="true">*</span></label>
+                <textarea class="form-textarea" id="message" name="message" placeholder="Tell us how we can help, or what you'd like to do..." required aria-required="true" aria-describedby="message-error"></textarea>
+                <span class="form-error" id="message-error" role="alert">Please write a message.</span>
+              </div>
+
+              <button type="submit" class="cta-pill submit-btn" aria-live="polite">Send Message</button>
+            </form>
+
+            <!-- Success state (hidden until submit) -->
+            <div class="form-success" id="form-success" aria-live="polite">
+              <div class="success-icon">
+                <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg>
+              </div>
+              <h3>Message sent!</h3>
+              <p>Thanks for reaching out. We'll get back to you within one business day.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Contact Info sidebar -->
+        <div class="contact-info">
+
+          <div class="info-item">
+            <div class="info-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>
+            </div>
+            <div class="info-text">
+              <h4>Email</h4>
+              <a href="mailto:coastal.clean.30@gmail.com">coastal.clean.30@gmail.com</a>
+              <p>Best for general inquiries and partnerships.</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg>
+            </div>
+            <div class="info-text">
+              <h4>Based In</h4>
+              <p>Tampa Bay Area, Florida<br>Pinellas · Hillsborough · Pasco · Manatee</p>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <div class="info-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+            </div>
+            <div class="info-text">
+              <h4>Response Time</h4>
+              <p>Within 1 business day for general messages. Corporate partnership inquiries typically within 48 hours.</p>
+            </div>
+          </div>
+
+          <!-- Corporate callout -->
+          <div class="corporate-callout">
+            <h3>Corporate &amp; Large-Scale Inquiries</h3>
+            <p>Organizing a team volunteer day, a major donation, or a multi-event partnership? Email us directly for faster handling of larger requests.</p>
+            <a href="mailto:coastal.clean.30@gmail.com">coastal.clean.30@gmail.com →</a>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner container">
+    <div class="footer-brand">
+      <a href="index.html" aria-label="CoastalCleans — Home"><img src="assets/logo.jpg" alt="CoastalCleans" class="footer-logo" width="52" height="52"></a>
+      <p class="footer-tagline">Cleaning coastlines,<br>saving sea life.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <p class="footer-col-heading">Navigation</p>
+      <a href="mission.html">Our Mission</a><a href="team.html">Our Team</a>
+      <a href="get-involved.html">Get Involved</a><a href="history.html">Our History</a>
+      <a href="contact.html">Contact Us</a><a href="donate.html">Donate</a>
+    </nav>
+    <div class="footer-social">
+      <p class="footer-col-heading">Follow Us</p>
+      <div class="social-icons">
+        <a href="#" class="social-icon" aria-label="Instagram"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="#" class="social-icon" aria-label="Facebook"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg></a>
+        <a href="#" class="social-icon" aria-label="X"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.7 5.5 4.3 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 CoastalCleans. Tampa Bay Chapter. All rights reserved.</p>
+    <p class="footer-email"><a href="mailto:coastal.clean.30@gmail.com">coastal.clean.30@gmail.com</a></p>
+  </div>
+</footer>
+
+<script src="js/nav.js"></script>
+<script src="js/contact.js"></script>
+</body>
+</html>

@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CoastalCleans — Cleaning Coastlines, Saving Sea Life</title>
+  <meta name="description" content="CoastalCleans is Tampa Bay's coastal cleanup nonprofit. Join us to clean beaches, remove ocean trash, and protect sea life.">
+  <link rel="icon" href="data:,">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <style>
+    /* ── Hero ── */
+    .hero {
+      position: relative;
+      background: linear-gradient(145deg, var(--raw-blue-900) 0%, var(--raw-blue-700) 70%, #1e5fc4 100%);
+      overflow: hidden;
+      min-height: 86vh;
+      display: flex;
+      align-items: center;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(ellipse at 70% 40%, rgba(94,150,232,0.15) 0%, transparent 65%);
+      pointer-events: none;
+    }
+    .hero-inner {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-9);
+      align-items: center;
+      padding-block: var(--space-12);
+      width: 100%;
+    }
+    .hero-content { display: flex; flex-direction: column; gap: var(--space-6); }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--space-3);
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-bold);
+      letter-spacing: var(--letter-spacing-wider);
+      text-transform: uppercase;
+      color: var(--color-accent-primary);
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 28px;
+      height: 2px;
+      background: var(--color-accent-primary);
+      border-radius: 1px;
+    }
+    .hero h1 {
+      color: var(--color-text-inverse);
+      font-size: clamp(2.6rem, 5vw, var(--font-size-5xl));
+      line-height: 1.1;
+      max-width: 14ch;
+    }
+    .hero-sub {
+      color: rgba(245,241,232,0.8);
+      font-size: var(--font-size-md);
+      line-height: var(--line-height-relaxed);
+      max-width: 46ch;
+    }
+    .hero-actions { display: flex; align-items: center; gap: var(--space-5); flex-wrap: wrap; }
+    .hero-link {
+      color: rgba(245,241,232,0.7);
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: var(--space-2);
+      transition: color var(--duration-fast) var(--easing-default);
+    }
+    .hero-link:hover { color: var(--color-text-inverse); }
+    .hero-visual {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      position: relative;
+    }
+    .hero-visual svg {
+      width: min(380px, 100%);
+      filter: drop-shadow(0 24px 48px rgba(0,0,0,0.35));
+    }
+    /* Wave divider */
+    .hero-wave { position: relative; z-index: 3; margin-top: -2px; }
+
+    /* ── Stats ── */
+    .stats-section {
+      background: var(--color-bg-secondary);
+      padding-block: var(--space-10);
+    }
+    .stats-intro {
+      text-align: center;
+      margin-bottom: var(--space-8);
+    }
+    .stats-intro h2 { font-size: var(--font-size-2xl); color: var(--color-text-primary); }
+    .stats-intro p  { margin-inline: auto; color: var(--color-text-secondary); font-size: var(--font-size-base); max-width: 52ch; }
+
+    /* ── Who We Are ── */
+    .who-section { padding-block: var(--space-11); }
+    .who-inner {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: var(--space-10);
+      align-items: center;
+    }
+    .who-content h2 { margin-bottom: var(--space-5); }
+    .who-content p  { color: var(--color-text-secondary); font-size: var(--font-size-md); margin-bottom: var(--space-6); max-width: 54ch; }
+    .who-sticker { display: flex; align-items: center; justify-content: center; }
+    .who-sticker svg {
+      width: 220px;
+      opacity: 0.92;
+      transition: transform var(--duration-normal) var(--easing-bounce);
+    }
+    .who-sticker:hover svg { transform: rotate(-3deg); }
+
+    /* ── Get Involved Teaser ── */
+    .involve-section {
+      background: var(--raw-blue-900);
+      padding-block: var(--space-11);
+      position: relative;
+      overflow: hidden;
+    }
+    .involve-section::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(ellipse at 20% 80%, rgba(232,102,58,0.08) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .involve-section .section-header h2 { color: var(--color-text-inverse); }
+    .involve-section .section-header p  { color: rgba(245,241,232,0.65); }
+    .involve-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--space-6);
+    }
+    .involve-card {
+      background: rgba(245,241,232,0.06);
+      border: 1px solid rgba(245,241,232,0.12);
+      border-radius: var(--border-radius-lg);
+      padding: var(--space-8) var(--space-7);
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-5);
+      transition: background-color var(--duration-normal) var(--easing-default),
+                  transform var(--duration-normal) var(--easing-out);
+    }
+    .involve-card:hover {
+      background: rgba(245,241,232,0.1);
+      transform: translateY(-4px);
+    }
+    .involve-icon {
+      width: 52px; height: 52px;
+      border-radius: var(--border-radius-md);
+      background: rgba(232,102,58,0.15);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .involve-icon svg { color: var(--color-accent-primary); }
+    .involve-card h3 { color: var(--color-text-inverse); font-size: var(--font-size-xl); }
+    .involve-card p  { color: rgba(245,241,232,0.7); font-size: var(--font-size-sm); line-height: var(--line-height-relaxed); max-width: none; }
+
+    /* ─── Responsive ─── */
+    @media (max-width: 900px) {
+      .hero-inner { grid-template-columns: 1fr; text-align: center; }
+      .hero h1    { max-width: none; margin-inline: auto; }
+      .hero-sub   { margin-inline: auto; }
+      .hero-actions { justify-content: center; }
+      .hero-visual { display: none; }
+      .who-inner  { grid-template-columns: 1fr; }
+      .who-sticker { display: none; }
+      .involve-grid { grid-template-columns: 1fr; }
+    }
+    @media (max-width: 640px) {
+      .hero { min-height: 70vh; padding-bottom: 80px; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<!-- Navigation -->
+<header class="site-nav" id="site-header">
+  <div class="nav-inner container">
+    <a href="index.html" class="nav-logo-link" aria-label="CoastalCleans — Home">
+      <img src="assets/logo.jpg" alt="CoastalCleans logo" class="nav-logo" width="44" height="44">
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="mission.html"      class="nav-link">Our Mission</a>
+      <a href="team.html"         class="nav-link">Our Team</a>
+      <a href="get-involved.html" class="nav-link">Get Involved</a>
+      <a href="history.html"      class="nav-link">Our History</a>
+      <a href="contact.html"      class="nav-link">Contact Us</a>
+    </nav>
+    <a href="donate.html" class="cta-pill nav-cta" aria-label="Donate to CoastalCleans">Donate</a>
+    <button class="nav-burger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-drawer">
+      <span class="burger-bar"></span>
+      <span class="burger-bar"></span>
+      <span class="burger-bar"></span>
+    </button>
+  </div>
+</header>
+<div class="nav-drawer" id="nav-drawer" aria-hidden="true" role="dialog" aria-label="Mobile navigation">
+  <nav class="drawer-links">
+    <a href="mission.html"      class="drawer-link">Our Mission</a>
+    <a href="team.html"         class="drawer-link">Our Team</a>
+    <a href="get-involved.html" class="drawer-link">Get Involved</a>
+    <a href="history.html"      class="drawer-link">Our History</a>
+    <a href="contact.html"      class="drawer-link">Contact Us</a>
+  </nav>
+  <a href="donate.html" class="cta-pill drawer-cta">Donate</a>
+</div>
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
+<!-- ── HERO ── -->
+<main id="main">
+  <section class="hero" aria-label="Hero">
+    <div class="container hero-inner">
+      <div class="hero-content">
+        <span class="hero-eyebrow">Tampa Bay Chapter · Est. 2025</span>
+        <h1>Cleaning coastlines,<br>saving sea life.</h1>
+        <p class="hero-sub">CoastalCleans organizes volunteer beach cleanups across Tampa Bay, removing tons of plastic before it reaches the ocean.</p>
+        <div class="hero-actions">
+          <a href="get-involved.html" class="cta-pill cta-pill--lg">Join Us</a>
+          <a href="mission.html" class="hero-link">
+            Our mission
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+          </a>
+        </div>
+      </div>
+      <div class="hero-visual" aria-hidden="true">
+        <!-- Manatee SVG sticker -->
+        <svg class="float" viewBox="0 0 260 170" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Shadow -->
+          <ellipse cx="138" cy="162" rx="82" ry="7" fill="rgba(0,0,0,0.18)"/>
+          <!-- Body -->
+          <path d="M52,85 C20,85 6,70 6,52 C6,34 22,18 48,14 C68,10 110,8 148,12 C175,15 204,26 218,46 C228,59 225,74 214,83 C203,92 178,98 150,100 C118,102 82,102 52,95 C38,91 26,88 22,85 C14,82 14,82 52,85 Z" fill="#1A4FA8"/>
+          <!-- Upper lobe of tail -->
+          <path d="M218,52 C228,42 245,32 248,46 C250,56 242,66 232,68 C224,70 218,65 218,60 Z" fill="#1A4FA8"/>
+          <!-- Lower lobe of tail -->
+          <path d="M218,72 C226,76 236,82 238,94 C240,104 230,110 222,104 C214,98 214,86 218,78 Z" fill="#1A4FA8"/>
+          <!-- Tail notch shadow -->
+          <path d="M216,62 C220,65 220,68 216,72 C214,68 214,65 216,62 Z" fill="#0A1520" opacity="0.4"/>
+          <!-- Body volume highlight -->
+          <ellipse cx="130" cy="50" rx="72" ry="26" fill="#2563C4" opacity="0.18"/>
+          <!-- Upper front flipper -->
+          <path d="M78,14 C62,6 42,2 44,14 C46,24 64,26 78,18 Z" fill="#143872"/>
+          <!-- Lower front flipper -->
+          <path d="M78,100 C62,108 42,112 44,100 C46,90 64,90 78,96 Z" fill="#143872"/>
+          <!-- Eye -->
+          <circle cx="28" cy="62" r="6" fill="white"/>
+          <circle cx="30" cy="62" r="4" fill="#0A1520"/>
+          <circle cx="29" cy="60" r="1.5" fill="white" opacity="0.75"/>
+          <!-- Nostrils -->
+          <ellipse cx="8"  cy="42" rx="3.5" ry="2.5" fill="#0A1520" opacity="0.45"/>
+          <ellipse cx="16" cy="40" rx="3.5" ry="2.5" fill="#0A1520" opacity="0.45"/>
+          <!-- Whiskers -->
+          <line x1="2"  y1="50" x2="20" y2="49" stroke="rgba(255,255,255,0.32)" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="2"  y1="55" x2="20" y2="55" stroke="rgba(255,255,255,0.32)" stroke-width="1.8" stroke-linecap="round"/>
+          <line x1="2"  y1="60" x2="20" y2="61" stroke="rgba(255,255,255,0.32)" stroke-width="1.8" stroke-linecap="round"/>
+          <!-- Skin wrinkle texture -->
+          <path d="M88,20 Q100,16 112,20"  stroke="rgba(255,255,255,0.12)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <path d="M118,16 Q132,12 148,16" stroke="rgba(255,255,255,0.12)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+          <path d="M158,17 Q172,14 184,18" stroke="rgba(255,255,255,0.12)" stroke-width="1.8" fill="none" stroke-linecap="round"/>
+        </svg>
+      </div>
+    </div>
+
+    <!-- Wave divider -->
+    <div class="hero-wave" style="position:absolute;bottom:0;left:0;right:0;">
+      <svg viewBox="0 0 1440 100" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;" aria-hidden="true">
+        <path d="M0,80 C360,130 1080,20 1440,80 L1440,100 L0,100 Z" fill="var(--color-bg-secondary)" opacity="0.35"/>
+        <path d="M0,60 C480,120 960,10 1440,60 L1440,100 L0,100 Z" fill="var(--color-bg-secondary)" opacity="0.65"/>
+        <path d="M0,44 C540,108 900,8 1440,44 L1440,100 L0,100 Z" fill="var(--color-bg-secondary)"/>
+      </svg>
+    </div>
+  </section>
+
+  <!-- ── STATS ── -->
+  <section class="stats-section">
+    <div class="container">
+      <div class="stats-intro">
+        <span class="eyebrow eyebrow--blue">Our Impact So Far</span>
+        <h2>Every cleanup counts</h2>
+        <p>Since founding the Tampa Bay Chapter in 2025, our volunteers have made a measurable difference.</p>
+      </div>
+      <div class="stat-grid">
+        <div class="stat-card">
+          <div class="stat-number">47</div>
+          <div class="stat-label">Beaches Cleaned</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">12,400<span style="font-size:0.55em">lbs</span></div>
+          <div class="stat-label">Trash Removed</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-number">340</div>
+          <div class="stat-label">Volunteers</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── WHO WE ARE ── -->
+  <section class="who-section section--cream">
+    <div class="container">
+      <div class="who-inner">
+        <div class="who-content">
+          <span class="eyebrow">Who We Are</span>
+          <h2>A community built<br>around clean water</h2>
+          <p>CoastalCleans is a volunteer-run nonprofit dedicated to protecting Tampa Bay's coastlines. We believe that clean beaches are everyone's responsibility — and everyone's reward. From weekend cleanups to corporate partnerships, every action removes plastic before it becomes ocean pollution.</p>
+          <div style="display:flex;gap:var(--space-4);flex-wrap:wrap;">
+            <a href="mission.html" class="cta-outline">Read Our Mission</a>
+            <a href="team.html"    class="cta-outline" style="border-color:var(--color-border-primary);color:var(--color-text-secondary);">Meet the Team</a>
+          </div>
+        </div>
+        <div class="who-sticker" aria-hidden="true">
+          <!-- Same manatee, no float, muted -->
+          <svg viewBox="0 0 260 170" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+            <path d="M52,85 C20,85 6,70 6,52 C6,34 22,18 48,14 C68,10 110,8 148,12 C175,15 204,26 218,46 C228,59 225,74 214,83 C203,92 178,98 150,100 C118,102 82,102 52,95 C38,91 26,88 22,85 C14,82 14,82 52,85 Z" fill="#1A4FA8" opacity="0.85"/>
+            <path d="M218,52 C228,42 245,32 248,46 C250,56 242,66 232,68 C224,70 218,65 218,60 Z" fill="#1A4FA8" opacity="0.85"/>
+            <path d="M218,72 C226,76 236,82 238,94 C240,104 230,110 222,104 C214,98 214,86 218,78 Z" fill="#1A4FA8" opacity="0.85"/>
+            <path d="M78,14 C62,6 42,2 44,14 C46,24 64,26 78,18 Z" fill="#143872"/>
+            <path d="M78,100 C62,108 42,112 44,100 C46,90 64,90 78,96 Z" fill="#143872"/>
+            <circle cx="28" cy="62" r="6" fill="white"/>
+            <circle cx="30" cy="62" r="4" fill="#0A1520"/>
+            <circle cx="29" cy="60" r="1.5" fill="white" opacity="0.75"/>
+            <line x1="2" y1="50" x2="20" y2="49" stroke="#1A4FA8" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
+            <line x1="2" y1="55" x2="20" y2="55" stroke="#1A4FA8" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
+            <line x1="2" y1="60" x2="20" y2="61" stroke="#1A4FA8" stroke-width="1.8" stroke-linecap="round" opacity="0.5"/>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ── GET INVOLVED TEASER ── -->
+  <section class="involve-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow">Take Action</span>
+        <h2>Get Involved</h2>
+        <p>Three ways to support CoastalCleans — every one of them makes a difference.</p>
+      </div>
+      <div class="involve-grid">
+
+        <article class="involve-card">
+          <div class="involve-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+          </div>
+          <h3>Volunteer</h3>
+          <p>Join a cleanup event on Tampa Bay's shores. No experience needed — just bring gloves and a willingness to dig in.</p>
+          <a href="get-involved.html#volunteer" class="cta-outline cta-outline--inverse" style="margin-top:auto;">Sign Up Free →</a>
+        </article>
+
+        <article class="involve-card">
+          <div class="involve-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <h3>Donate</h3>
+          <p>Every dollar funds cleanup supplies, transportation, and education programs that keep Tampa Bay plastic-free.</p>
+          <a href="donate.html" class="cta-pill" style="margin-top:auto;">Donate Now →</a>
+        </article>
+
+        <article class="involve-card">
+          <div class="involve-icon">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Partner With Us</h3>
+          <p>Align your brand with environmental action. Corporate partners receive recognition, co-branding, and volunteer day coordination.</p>
+          <a href="contact.html" class="cta-outline cta-outline--inverse" style="margin-top:auto;">Get in Touch →</a>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- Footer -->
+<footer class="site-footer">
+  <div class="footer-inner container">
+    <div class="footer-brand">
+      <a href="index.html" aria-label="CoastalCleans — Home">
+        <img src="assets/logo.jpg" alt="CoastalCleans" class="footer-logo" width="52" height="52">
+      </a>
+      <p class="footer-tagline">Cleaning coastlines,<br>saving sea life.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <p class="footer-col-heading">Navigation</p>
+      <a href="mission.html">Our Mission</a>
+      <a href="team.html">Our Team</a>
+      <a href="get-involved.html">Get Involved</a>
+      <a href="history.html">Our History</a>
+      <a href="contact.html">Contact Us</a>
+      <a href="donate.html">Donate</a>
+    </nav>
+    <div class="footer-social">
+      <p class="footer-col-heading">Follow Us</p>
+      <div class="social-icons">
+        <a href="#" class="social-icon" aria-label="CoastalCleans on Instagram">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>
+        </a>
+        <a href="#" class="social-icon" aria-label="CoastalCleans on Facebook">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+        </a>
+        <a href="#" class="social-icon" aria-label="CoastalCleans on X">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 4s-.7 2.1-2 3.4c1.6 10-9.4 17.3-18 11.6 2.2.1 4.4-.6 6-2C3 15.5.5 9.6 3 5c2.2 2.7 5.5 4.3 9 4-.9-4.2 4-6.6 7-3.8 1.1 0 3-1.2 3-1.2z"/></svg>
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-copy">© 2025 CoastalCleans. Tampa Bay Chapter. All rights reserved.</p>
+    <p class="footer-email"><a href="mailto:coastal.clean.30@gmail.com">coastal.clean.30@gmail.com</a></p>
+  </div>
+</footer>
+
+<script src="js/nav.js"></script>
+</body>
+</html>
