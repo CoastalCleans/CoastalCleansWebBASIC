@@ -4,11 +4,11 @@
   Source palette: logo (#1A4FA8 royal blue, #F5F1E8 cream, black whale silhouette).
   Tone: Warm, trustworthy, community-driven. Not corporate. Not childish.
 
-  Typography: Google Fonts — Fredoka (display) + Nunito (body)
+  Typography: Google Fonts — Lato (display + body)
   Import in HTML <head>:
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
 */
 
 /* ─── Light Mode (default) ─── */
@@ -99,8 +99,8 @@
 
   /* ─────────────────────────────────────────── */
   /* ── Typography ── */
-  --font-family-display: 'Fredoka', 'Trebuchet MS', sans-serif;
-  --font-family-body:    'Nunito', 'Segoe UI', sans-serif;
+  --font-family-display: 'Lato', 'Segoe UI', sans-serif;
+  --font-family-body:    'Lato', 'Segoe UI', sans-serif;
   --font-family-mono:    'JetBrains Mono', 'Courier New', monospace;
 
   --font-size-xs:    0.75rem;   /* 12px */
