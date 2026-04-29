@@ -231,9 +231,9 @@
 
   /* Text — warm off-white, not pure white (reduces harshness) */
   --color-text-primary:      #E8E2D4;
-  --color-text-secondary:    var(--raw-slate-300);  /* #A8B8C8 */
-  --color-text-tertiary:     var(--raw-slate-200);  /* #6A7E8E */
-  --color-text-inverse:      #1C2B3A;
+  --color-text-secondary:    #C4D0DC;               /* boosted from slate-300 for readability */
+  --color-text-tertiary:     var(--raw-slate-300);  /* #A8B8C8 */
+  --color-text-inverse:      #E8E2D4;               /* stays light — all usages are on dark backgrounds */
   --color-text-link:         var(--raw-blue-400);   /* #5E96E8 — lighter for dark bg */
   --color-text-link-hover:   #7AACF0;
 
@@ -289,9 +289,9 @@
     --color-bg-footer:         var(--raw-navy-950);
 
     --color-text-primary:      #E8E2D4;
-    --color-text-secondary:    var(--raw-slate-300);
-    --color-text-tertiary:     var(--raw-slate-200);
-    --color-text-inverse:      #1C2B3A;
+    --color-text-secondary:    #C4D0DC;
+    --color-text-tertiary:     var(--raw-slate-300);
+    --color-text-inverse:      #E8E2D4;
     --color-text-link:         var(--raw-blue-400);
     --color-text-link-hover:   #7AACF0;
 

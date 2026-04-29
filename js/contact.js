@@ -1,12 +1,17 @@
 (function () {
   'use strict';
 
+  // Web3Forms — free email forwarding, no backend needed.
+  // To activate: go to https://web3forms.com/access, enter coastal.clean.30@gmail.com,
+  // confirm your email, then paste the access key below.
+  var ACCESS_KEY = 'c247bdec-1e4e-4997-b16a-f10ade69957c';
+
   var form    = document.getElementById('contact-form');
   var success = document.getElementById('form-success');
   if (!form) return;
 
-  function getGroup(id)   { return document.getElementById('group-' + id); }
-  function isValidEmail(v){ return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
+  function getGroup(id)    { return document.getElementById('group-' + id); }
+  function isValidEmail(v) { return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(v); }
 
   function setError(groupId, show) {
     var g = getGroup(groupId);
@@ -16,7 +21,7 @@
   }
 
   function clearErrors() {
-    ['name','email','message'].forEach(function (id) { setError(id, false); });
+    ['name', 'email', 'message'].forEach(function (id) { setError(id, false); });
   }
 
   form.addEventListener('submit', function (e) {
@@ -25,30 +30,48 @@
 
     var name    = form.querySelector('#name').value.trim();
     var email   = form.querySelector('#email').value.trim();
+    var orgEl   = form.querySelector('#org');
+    var org     = orgEl ? orgEl.value.trim() : '';
     var message = form.querySelector('#message').value.trim();
     var valid   = true;
 
-    if (!name)            { setError('name', true);    valid = false; }
-    if (!isValidEmail(email)) { setError('email', true);   valid = false; }
-    if (!message)         { setError('message', true); valid = false; }
+    if (!name)                 { setError('name',    true); valid = false; }
+    if (!isValidEmail(email))  { setError('email',   true); valid = false; }
+    if (!message)              { setError('message', true); valid = false; }
 
     if (!valid) {
-      /* Move focus to first error */
       var firstError = form.querySelector('.has-error .form-input, .has-error .form-textarea');
       if (firstError) firstError.focus();
       return;
     }
 
-    /* Show success (no real backend in v1) */
-    form.style.display = 'none';
-    if (success) {
-      success.classList.add('is-visible');
-      success.focus();
-    }
+    var btn = form.querySelector('[type="submit"]');
+    if (btn) { btn.disabled = true; btn.textContent = 'Sending…'; }
+
+    var data = new FormData(form);
+    data.append('access_key', ACCESS_KEY);
+    data.append('subject', 'CoastalCleans Contact: ' + name);
+
+    fetch('https://api.web3forms.com/submit', { method: 'POST', body: data })
+      .then(function (res) {
+        return res.json().then(function (json) { return { ok: res.ok, json: json }; });
+      })
+      .then(function (result) {
+        if (result.ok) {
+          form.style.display = 'none';
+          if (success) { success.classList.add('is-visible'); success.focus(); }
+        } else {
+          if (btn) { btn.disabled = false; btn.textContent = 'Send Message'; }
+          alert('Error: ' + (result.json.message || 'Something went wrong. Please email us directly at coastal.clean.30@gmail.com'));
+        }
+      })
+      .catch(function () {
+        if (btn) { btn.disabled = false; btn.textContent = 'Send Message'; }
+        alert('Unable to send message. Please email us directly at coastal.clean.30@gmail.com');
+      });
   });
 
-  /* Clear error on input */
-  ['name','email','message'].forEach(function (id) {
+  ['name', 'email', 'message'].forEach(function (id) {
     var el = form.querySelector('#' + id);
     if (!el) return;
     el.addEventListener('input', function () { setError(id, false); });
