@@ -194,12 +194,41 @@
     .event-meta span { display: flex; align-items: center; gap: var(--space-2); }
     .event-cta { flex-shrink: 0; display: flex; align-items: center; }
 
+    /* Email notification form */
+    .notify-form {
+      display: flex;
+      gap: var(--space-3);
+      justify-content: center;
+      flex-wrap: wrap;
+      margin-top: var(--space-6);
+    }
+    .notify-form input[type="email"] {
+      flex: 1;
+      min-width: 220px;
+      max-width: 320px;
+      padding: var(--space-3) var(--space-5);
+      border: var(--input-border);
+      border-radius: var(--border-radius-full);
+      background: var(--input-bg);
+      color: var(--color-text-primary);
+      font-family: var(--font-family-body);
+      font-size: var(--font-size-base);
+      outline: none;
+      transition: border-color var(--duration-fast);
+    }
+    .notify-form input[type="email"]:focus { border-color: var(--color-accent-primary); }
+    .notify-feedback { font-size: var(--font-size-sm); margin-top: var(--space-4); }
+    #notify-success { color: #2e7d32; }
+    #notify-error   { color: #c62828; }
+
     @media (max-width: 768px) {
       .track { grid-template-columns: 1fr; gap: var(--space-8); }
       .track--reverse { direction: ltr; }
       .event-item { flex-direction: column; }
       .event-cta  { width: 100%; }
       .event-cta a { width: 100%; justify-content: center; }
+      .notify-form { flex-direction: column; align-items: center; }
+      .notify-form input[type="email"] { max-width: 100%; }
     }
   </style>
 </head>
@@ -352,7 +381,12 @@
       <div class="events-empty">
         <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="var(--color-text-tertiary)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="margin-bottom:var(--space-5);"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
         <p>No upcoming events are currently scheduled. New events will be posted here as they're announced.</p>
-        <a href="contact.html" class="cta-outline">Get Notified →</a>
+        <form id="notify-form" class="notify-form" novalidate>
+          <input type="email" id="notify-email" placeholder="your@email.com" autocomplete="email" required aria-label="Email address for event notifications">
+          <button type="submit" class="cta-pill">Get Notified →</button>
+        </form>
+        <p id="notify-success" class="notify-feedback" hidden>You're on the list! We'll email you when new events are posted.</p>
+        <p id="notify-error" class="notify-feedback" hidden>Something went wrong. Please try again.</p>
       </div>
     </div>
   </section>
@@ -390,6 +424,42 @@
 </footer>
 
 <script src="js/nav.js"></script>
+<script>
+  (function () {
+    var form = document.getElementById('notify-form');
+    if (!form) return;
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var email = document.getElementById('notify-email').value.trim();
+      var successEl = document.getElementById('notify-success');
+      var errorEl   = document.getElementById('notify-error');
+      var btn = form.querySelector('button[type="submit"]');
+      successEl.hidden = true;
+      errorEl.hidden = true;
+      btn.disabled = true;
+      btn.textContent = 'Subscribing…';
+      fetch('/.netlify/functions/subscribe', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ email: email })
+      })
+        .then(function (r) { return r.json(); })
+        .then(function (data) {
+          if (data.success) {
+            successEl.hidden = false;
+            form.reset();
+          } else {
+            throw new Error(data.error || 'Error');
+          }
+        })
+        .catch(function () { errorEl.hidden = false; })
+        .finally(function () {
+          btn.disabled = false;
+          btn.textContent = 'Get Notified →';
+        });
+    });
+  })();
+</script>
 <script src="js/theme.js"></script>
 </body>
 </html>
