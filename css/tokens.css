@@ -34,10 +34,10 @@
   --raw-slate-400:  #8A9BAD;
   --raw-slate-300:  #A8B8C8;
   --raw-slate-200:  #6A7E8E;
-  --raw-coral-600:  #C04F26;
-  --raw-coral-700:  #D45A2E;
-  --raw-coral-500:  #E8663A;  /* CTA coral/amber */
-  --raw-coral-400:  #F0784A;
+  --raw-teal-400:   #89C7AF;  /* light teal */
+  --raw-teal-500:   #6BB399;  /* CTA teal */
+  --raw-teal-600:   #529E85;  /* medium dark teal */
+  --raw-teal-700:   #3D8B6D;  /* dark teal */
   --raw-green-600:  #2D8A5E;  /* ocean green */
   --raw-amber-500:  #D4A017;  /* sandy amber */
   --raw-red-600:    #C93636;
@@ -64,9 +64,9 @@
   --color-border-focus:      var(--raw-blue-700);    /* #1A4FA8 — focus ring */
 
   /* ── Semantic: Accents ── */
-  --color-accent-primary:          var(--raw-coral-500);  /* #E8663A — CTA coral (Donate button) */
-  --color-accent-primary-hover:    var(--raw-coral-700);  /* #D45A2E */
-  --color-accent-primary-active:   var(--raw-coral-600);  /* #C04F26 */
+  --color-accent-primary:          var(--raw-teal-500);   /* #6BB399 — CTA teal (Donate button) */
+  --color-accent-primary-hover:    var(--raw-teal-700);   /* #3D8B6D */
+  --color-accent-primary-active:   var(--raw-teal-600);   /* #529E85 */
   --color-accent-primary-text:     #FFFFFF;
   --color-accent-secondary:        var(--raw-blue-700);   /* #1A4FA8 — secondary actions */
   --color-accent-secondary-hover:  var(--raw-blue-600);
@@ -242,10 +242,10 @@
   --color-border-secondary:  var(--raw-navy-500);   /* #1E3245 */
   --color-border-focus:      var(--raw-blue-400);
 
-  /* Accents — coral holds well in dark mode */
-  --color-accent-primary:         var(--raw-coral-500);  /* #E8663A */
-  --color-accent-primary-hover:   var(--raw-coral-400);  /* Lighten on dark */
-  --color-accent-primary-active:  var(--raw-coral-700);
+  /* Accents — teal holds well in dark mode */
+  --color-accent-primary:         var(--raw-teal-500);   /* #6BB399 */
+  --color-accent-primary-hover:   var(--raw-teal-400);   /* Lighten on dark */
+  --color-accent-primary-active:  var(--raw-teal-700);
   --color-accent-secondary:       var(--raw-blue-400);
   --color-accent-secondary-hover: #7AACF0;
 
@@ -299,9 +299,9 @@
     --color-border-secondary:  var(--raw-navy-500);
     --color-border-focus:      var(--raw-blue-400);
 
-    --color-accent-primary:         var(--raw-coral-500);
-    --color-accent-primary-hover:   var(--raw-coral-400);
-    --color-accent-primary-active:  var(--raw-coral-700);
+    --color-accent-primary:         var(--raw-teal-500);
+    --color-accent-primary-hover:   var(--raw-teal-400);
+    --color-accent-primary-active:  var(--raw-teal-700);
     --color-accent-secondary:       var(--raw-blue-400);
     --color-accent-secondary-hover: #7AACF0;
 
