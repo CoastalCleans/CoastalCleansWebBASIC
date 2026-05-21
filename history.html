@@ -5,10 +5,17 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Our History — CoastalCleans</title>
   <meta name="description" content="From a single Tampa Bay cleanup in 2025 to a growing coastal conservation movement.">
+  <link rel="canonical" href="https://coastalcleans.org/history.html">
+  <meta property="og:title" content="Our History — CoastalCleans">
+  <meta property="og:description" content="From a single Tampa Bay cleanup in 2025 to a growing coastal conservation movement.">
+  <meta property="og:image" content="https://coastalcleans.org/assets/logo.jpg">
+  <meta property="og:url" content="https://coastalcleans.org/history.html">
+  <meta property="og:type" content="website">
   <link rel="icon" href="data:,">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap" rel="stylesheet">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap"></noscript>
   <link rel="stylesheet" href="css/tokens.css">
   <link rel="stylesheet" href="css/global.css">
   <link rel="stylesheet" href="css/nav.css">
@@ -287,7 +294,7 @@
         <p>Currently active in Hillsborough County and the greater Tampa Bay region.</p>
       </div>
       <div class="county-map-container">
-        <img src="assets/hillsboroughcounty.jpg" alt="Hillsborough County, Florida — home of CoastalCleans HQ" class="county-map-img">
+        <img src="assets/hillsboroughcounty.jpg" alt="Hillsborough County, Florida — home of CoastalCleans HQ" class="county-map-img" loading="lazy">
         <div class="tampa-label" aria-label="CoastalCleans HQ location">
           <span class="tampa-dot-marker"></span>
           CoastalCleans HQ
@@ -323,7 +330,7 @@
   </div>
   <div class="footer-bottom">
     <p class="footer-ein">EIN 42-2066717 &middot; 501(c)(3) Nonprofit</p>
-    <p class="footer-email"><a href="mailto:coastal.clean.30@gmail.com">coastal.clean.30@gmail.com</a></p>
+    <p class="footer-email"><a href="mailto:hq@coastalcleans.org">hq@coastalcleans.org</a></p>
     <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false" type="button">
       <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
       <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
@@ -331,7 +338,7 @@
   </div>
 </footer>
 
-<script src="js/nav.js"></script>
+<script src="js/nav.js" defer></script>
 <script>
   /* Timeline accordion */
   (function () {
@@ -348,6 +355,6 @@
     });
   })();
 </script>
-<script src="js/theme.js"></script>
+<script src="js/theme.js" defer></script>
 </body>
 </html>

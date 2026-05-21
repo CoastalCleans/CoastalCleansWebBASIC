@@ -56,7 +56,7 @@ exports.handler = async function (event) {
       body: JSON.stringify({
         name: `Event: ${title} — ${new Date().toISOString().slice(0, 10)}`,
         subject: `🌊 New CoastalCleans Event: ${title}`,
-        sender: { name: 'CoastalCleans', email: 'coastal.clean.30@gmail.com' },
+        sender: { name: 'CoastalCleans', email: 'hq@coastalcleans.org' },
         type: 'classic',
         htmlContent,
         recipients: { listIds: [listId] },

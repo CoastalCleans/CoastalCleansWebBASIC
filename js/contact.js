@@ -52,12 +52,12 @@
           if (success) { success.classList.add('is-visible'); success.focus(); }
         } else {
           if (btn) { btn.disabled = false; btn.textContent = 'Send Message'; }
-          alert('Something went wrong. Please email us directly at coastal.clean.30@gmail.com');
+          alert('Something went wrong. Please email us directly at hq@coastalcleans.org');
         }
       })
       .catch(function () {
         if (btn) { btn.disabled = false; btn.textContent = 'Send Message'; }
-        alert('Unable to send message. Please email us directly at coastal.clean.30@gmail.com');
+        alert('Unable to send message. Please email us directly at hq@coastalcleans.org');
       });
   });
 
