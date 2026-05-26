@@ -14,7 +14,7 @@ exports.handler = async function (event) {
     return { statusCode: 400, body: JSON.stringify({ error: 'Valid email required' }) };
   }
 
-  const groupId = process.env.SENDER_GROUP_ID || 'dBvyON';
+  const groupId = process.env.SENDER_GROUP_ID;
   const payload = { email, groups: [groupId] };
   if (firstname) payload.firstname = firstname;
   if (lastname)  payload.lastname  = lastname;
