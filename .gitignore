@@ -47,3 +47,12 @@ logs/
 
 # Claude Memory
 CLAUDE.md
+
+# Obsidian vault (memories/) — track notes, ignore volatile workspace state
+memories/.obsidian/workspace.json
+memories/.obsidian/workspace-mobile.json
+memories/.obsidian/graph.json
+memories/.trash/
+
+# MCP server config — local environment only
+.mcp.json
