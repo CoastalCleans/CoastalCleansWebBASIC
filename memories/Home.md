@@ -31,10 +31,18 @@ Second brain for the CoastalCleans nonprofit website — [coastalcleans.org](htt
 
 ## Resources
 
+### Integrations
 - [[03 Resources/Stripe|Stripe — Donations]]
 - [[03 Resources/Sender.net|Sender.net — Email / Subscribers]]
 - [[03 Resources/Netlify|Netlify — Hosting & Functions]]
 - [[03 Resources/QMD Search|QMD — Local Search Engine]]
+
+### Design References
+- [[03 Resources/Design References/Girls Who Code — About Us|Girls Who Code — About Us (Design Patterns)]]
+
+### Research & Data
+- [[03 Resources/Research/Marine Life Statistics|Marine Life Statistics — Ocean Plastic (NOAA/EPA)]]
+- [[03 Resources/Research/Tampa Bay Coastal Data|Tampa Bay Coastal Data (TBEP/FloridaDEP)]]
 
 ---
 

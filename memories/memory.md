@@ -12,6 +12,28 @@ Running log of decisions, discoveries, and patterns across all Claude Code sessi
 
 ---
 
+## 2026-05-27 — mission.html Redesign + Vault Expansion
+
+**What changed:**
+- Redesigned `mission.html` with 7 sections (added 3 new data/context sections, removed duplicate impact strip)
+- Added scrolling underline animation on key heading words (GWC-inspired)
+- Added SVG donut chart (80% plastic) + CSS species bar chart with IntersectionObserver scroll animations
+- Added marine-life crisis stats section (700+ species, 80%, 11M+, 32% turtles) — sourced from NOAA + EPA
+- Added Tampa Bay context section — sourced from TBEP Trash Free Waters + Florida DEP
+- Expanded vault: `03 Resources/Design References/Girls Who Code — About Us.md`, `03 Resources/Research/Marine Life Statistics.md`, `03 Resources/Research/Tampa Bay Coastal Data.md`
+- Updated vault `CLAUDE.md` and project `CLAUDE.md` to document /defuddle, /obsidian-markdown, /obiqmd-guider skills
+
+**Design decisions:**
+- Removed "Results since founding" impact strip — it duplicated index.html stats exactly
+- New stats use credible .org/.gov sources only (NOAA, EPA, TBEP)
+- Scrolling underline uses CSS `background-size` transition from 0→100%, triggered by IntersectionObserver
+- Donut chart uses inline SVG with animated `stroke-dashoffset` (no charting library)
+- All animations respect `prefers-reduced-motion: reduce`
+
+**Status:** ✅ Deployed to GitHub main
+
+---
+
 ## 2026-05-27 — Obsidian Vault + QMD Setup
 
 **What changed:**

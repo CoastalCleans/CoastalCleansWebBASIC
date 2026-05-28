@@ -22,7 +22,7 @@
   <link rel="stylesheet" href="css/nav.css">
   <link rel="stylesheet" href="css/footer.css">
   <style>
-    /* Page hero */
+    /* ── Page Hero ──────────────────────────────────────────── */
     .page-hero {
       background: linear-gradient(150deg, var(--raw-blue-900) 0%, var(--raw-blue-700) 100%);
       padding: var(--space-12) 0 0;
@@ -31,32 +31,58 @@
       overflow: hidden;
     }
     .page-hero::before {
-      content:'';position:absolute;inset:0;
+      content: '';
+      position: absolute;
+      inset: 0;
       background: radial-gradient(ellipse at 60% 30%, rgba(94,150,232,0.12) 0%, transparent 70%);
-      pointer-events:none;
+      pointer-events: none;
     }
     .page-hero-inner { position: relative; z-index: 2; }
-    .page-hero h1   { color: var(--color-text-inverse); margin-bottom: var(--space-5); }
-    .page-hero p    { color: rgba(245,241,232,0.8); font-size: var(--font-size-md); max-width: 58ch; margin-inline: auto; }
-    .page-hero-wave { position: relative; z-index: 3; margin-top: var(--space-9); }
+    .page-hero h1    { color: var(--color-text-inverse); margin-bottom: var(--space-5); }
+    .page-hero p     { color: rgba(245,241,232,0.8); font-size: var(--font-size-md); max-width: 58ch; margin-inline: auto; }
+    .page-hero-wave  { position: relative; z-index: 3; margin-top: var(--space-9); }
 
-    /* Mission statement */
+    /* ── Scrolling Underline ────────────────────────────────── */
+    /* Draws a teal underline from left→right on scroll, à la Girls Who Code */
+    .underline-reveal {
+      background-image: linear-gradient(var(--color-accent-primary), var(--color-accent-primary));
+      background-position: 0 100%;
+      background-repeat: no-repeat;
+      background-size: 0% 3px;
+      transition: background-size 0.85s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+      padding-bottom: 3px;
+    }
+    .underline-reveal.is-visible { background-size: 100% 3px; }
+    @media (prefers-reduced-motion: reduce) {
+      .underline-reveal { background-size: 100% 3px !important; transition: none !important; }
+    }
+
+    /* ── Mission Statement ──────────────────────────────────── */
     .mission-statement {
       font-family: var(--font-family-display);
       font-size: clamp(var(--font-size-xl), 3vw, var(--font-size-3xl));
       font-weight: var(--font-weight-semibold);
       color: var(--color-accent-secondary);
       line-height: var(--line-height-snug);
-      max-width: 24ch;
-      margin-inline: auto;
-      text-align: center;
       border-left: 4px solid var(--color-accent-primary);
       padding-left: var(--space-6);
       text-align: left;
       max-width: 700px;
     }
+    .mission-whale {
+      width: min(260px, 100%);
+      height: 320px;
+      object-fit: cover;
+      border-radius: var(--border-radius-xl);
+      box-shadow: 0 16px 40px rgba(15,42,94,0.25), 0 4px 12px rgba(15,42,94,0.15);
+      animation: whale-float 5s ease-in-out infinite;
+    }
+    @keyframes whale-float {
+      0%, 100% { transform: translateY(0) rotate(-2deg); }
+      50%       { transform: translateY(-14px) rotate(2deg); }
+    }
 
-    /* Pillars */
+    /* ── Three Pillars ──────────────────────────────────────── */
     .pillars-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
@@ -77,17 +103,19 @@
     }
     .pillar-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-md); }
     .pillar-icon {
-      width: 64px; height: 64px;
+      width: 64px;
+      height: 64px;
       border-radius: var(--border-radius-lg);
-      background: linear-gradient(135deg, rgba(26,79,168,0.1), rgba(26,79,168,0.05));
-      display: flex; align-items: center; justify-content: center;
+      background: linear-gradient(135deg, rgba(26,79,168,0.10), rgba(26,79,168,0.05));
+      display: flex;
+      align-items: center;
+      justify-content: center;
       border: 1px solid rgba(26,79,168,0.12);
     }
     .pillar-icon svg { color: var(--color-accent-secondary); }
-    .pillar-card h3 { color: var(--color-text-primary); }
-    .pillar-card p  { color: var(--color-text-secondary); font-size: var(--font-size-base); line-height: var(--line-height-relaxed); max-width: none; }
+    .pillar-card h3  { color: var(--color-text-primary); }
+    .pillar-card p   { color: var(--color-text-secondary); font-size: var(--font-size-base); line-height: var(--line-height-relaxed); max-width: none; }
     .pillar-number {
-      font-family: var(--font-family-display);
       font-size: var(--font-size-4xl);
       font-weight: var(--font-weight-bold);
       color: rgba(26,79,168,0.08);
@@ -95,24 +123,314 @@
       margin-bottom: calc(var(--space-3) * -1);
     }
 
-    /* Impact strip */
-    .impact-strip {
-      background: var(--raw-blue-700);
-      padding-block: var(--space-10);
+    /* ── Marine Crisis Stats ────────────────────────────────── */
+    .marine-crisis {
+      background: linear-gradient(160deg, var(--raw-blue-900) 0%, var(--raw-blue-800) 100%);
+      padding-block: var(--space-11);
+      position: relative;
+      overflow: hidden;
     }
-    .impact-strip .stat-number { color: var(--color-text-inverse); }
-    .impact-strip .stat-label  { color: rgba(245,241,232,0.7); }
-    .impact-strip .stat-card   { background: rgba(255,255,255,0.08); border-color: rgba(255,255,255,0.12); }
+    .marine-crisis::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 80% 50%, rgba(107,179,153,0.07) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .marine-crisis .section-header   { position: relative; z-index: 1; }
+    .marine-crisis .section-header h2 { color: var(--color-text-inverse); }
+    .marine-crisis .section-header p  { color: rgba(245,241,232,0.72); }
+    .marine-crisis .eyebrow           { color: var(--color-accent-primary); }
 
-    /* CTA section */
+    .crisis-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--space-6);
+      margin-top: var(--space-9);
+      position: relative;
+      z-index: 1;
+    }
+    .crisis-card {
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: var(--card-radius);
+      padding: var(--space-7) var(--space-6);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-3);
+      transition: transform var(--duration-normal) var(--easing-out),
+                  background-color var(--duration-normal);
+    }
+    .crisis-card:hover {
+      transform: translateY(-3px);
+      background: rgba(255,255,255,0.085);
+    }
+    .crisis-card-icon {
+      width: 44px;
+      height: 44px;
+      border-radius: var(--border-radius-md);
+      background: rgba(107,179,153,0.18);
+      border: 1px solid rgba(107,179,153,0.25);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: var(--space-2);
+    }
+    .crisis-card-icon svg { color: var(--color-accent-primary); }
+    .crisis-number {
+      font-family: var(--font-family-display);
+      font-size: clamp(2.25rem, 5vw, 3.75rem);
+      font-weight: var(--font-weight-bold);
+      color: #FFFFFF;
+      line-height: 1;
+      letter-spacing: var(--letter-spacing-tight);
+    }
+    .crisis-number sup {
+      font-size: 0.42em;
+      font-weight: var(--font-weight-normal);
+      letter-spacing: 0;
+      vertical-align: super;
+    }
+    .crisis-label {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      color: rgba(245,241,232,0.92);
+      line-height: var(--line-height-snug);
+    }
+    .crisis-sub {
+      font-size: var(--font-size-xs);
+      color: rgba(245,241,232,0.48);
+      line-height: var(--line-height-normal);
+    }
+
+    /* ── Plastic Breakdown ──────────────────────────────────── */
+    .breakdown-wrap {
+      display: grid;
+      grid-template-columns: 240px 1fr;
+      gap: var(--space-12);
+      align-items: center;
+      margin-top: var(--space-9);
+    }
+
+    /* Donut chart */
+    .donut-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: var(--space-5);
+    }
+    .donut-container {
+      position: relative;
+      width: 200px;
+      height: 200px;
+    }
+    .donut-svg {
+      width: 200px;
+      height: 200px;
+      filter: drop-shadow(0 4px 16px rgba(26,79,168,0.14));
+    }
+    .donut-bg   { fill: none; stroke: var(--color-bg-tertiary); stroke-width: 26; }
+    .donut-fill {
+      fill: none;
+      stroke: var(--color-accent-primary);
+      stroke-width: 26;
+      stroke-linecap: round;
+      /* r=80 → circumference ≈ 502.65 | 80% drawn → offset = 502.65 × 0.20 ≈ 100.53 */
+      stroke-dasharray: 502.65;
+      stroke-dashoffset: 502.65;
+      transform-origin: 50% 50%;
+      transform: rotate(-90deg);
+      transition: stroke-dashoffset 1.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .donut-fill.is-visible { stroke-dashoffset: 100.53; }
+    .donut-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -52%);
+      text-align: center;
+      pointer-events: none;
+    }
+    .donut-pct {
+      font-size: var(--font-size-3xl);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-text-primary);
+      line-height: 1;
+    }
+    .donut-pct-label {
+      font-size: 0.65rem;
+      color: var(--color-text-secondary);
+      line-height: 1.45;
+      max-width: 9ch;
+      margin-inline: auto;
+    }
+    .donut-legend {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-3);
+      width: 100%;
+    }
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: var(--space-3);
+      font-size: var(--font-size-xs);
+      color: var(--color-text-secondary);
+    }
+    .legend-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    /* Species bar chart */
+    .species-chart {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+    .species-chart-title {
+      font-size: var(--font-size-lg);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-2);
+    }
+    .species-row {
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-2);
+    }
+    .species-row-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
+    .species-name {
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-primary);
+    }
+    .species-pct-label {
+      font-size: var(--font-size-xs);
+      font-weight: var(--font-weight-bold);
+      color: var(--color-accent-secondary);
+    }
+    .species-track {
+      background: var(--color-bg-tertiary);
+      border-radius: var(--border-radius-full);
+      height: 10px;
+      overflow: hidden;
+    }
+    .species-bar {
+      height: 100%;
+      border-radius: var(--border-radius-full);
+      background: linear-gradient(90deg, var(--color-accent-secondary), var(--color-accent-primary));
+      width: 0%;
+      transition: width 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    }
+    .species-bar.is-visible { width: var(--bar-w, 0%); }
+    .species-note {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-tertiary);
+      line-height: var(--line-height-normal);
+    }
+
+    /* Source citations */
+    .source-block {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-tertiary);
+      border-top: 1px solid var(--color-border-secondary);
+      padding-top: var(--space-6);
+      margin-top: var(--space-9);
+      line-height: var(--line-height-relaxed);
+    }
+    .source-block a {
+      color: var(--color-text-tertiary);
+      text-decoration: underline;
+    }
+    .source-block a:hover { color: var(--color-text-secondary); }
+
+    /* ── Tampa Bay Context ──────────────────────────────────── */
+    .bay-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--space-10);
+      align-items: start;
+      margin-top: var(--space-9);
+    }
+    .bay-facts {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: var(--space-6);
+    }
+    .bay-fact {
+      display: flex;
+      gap: var(--space-5);
+      align-items: flex-start;
+    }
+    .bay-fact-icon {
+      width: 42px;
+      height: 42px;
+      flex-shrink: 0;
+      border-radius: var(--border-radius-md);
+      background: linear-gradient(135deg, rgba(107,179,153,0.14), rgba(107,179,153,0.04));
+      border: 1px solid rgba(107,179,153,0.2);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .bay-fact-icon svg { color: var(--color-accent-primary); }
+    .bay-fact-body strong {
+      display: block;
+      font-size: var(--font-size-sm);
+      font-weight: var(--font-weight-semibold);
+      color: var(--color-text-primary);
+      margin-bottom: var(--space-1);
+    }
+    .bay-fact-body p {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      line-height: var(--line-height-relaxed);
+      max-width: none;
+    }
+    .bay-callout-card {
+      background: var(--card-bg);
+      border-radius: var(--card-radius);
+      box-shadow: var(--card-shadow);
+      border: var(--card-border);
+      border-top: 3px solid var(--color-accent-primary);
+      padding: var(--space-8);
+    }
+    .bay-callout-card h3 {
+      font-size: var(--font-size-xl);
+      color: var(--color-accent-secondary);
+      margin-bottom: var(--space-5);
+    }
+    .bay-callout-card p {
+      font-size: var(--font-size-base);
+      color: var(--color-text-secondary);
+      line-height: var(--line-height-relaxed);
+      max-width: none;
+    }
+    .bay-callout-card p + p { margin-top: var(--space-4); }
+    .bay-source {
+      font-size: var(--font-size-xs);
+      color: var(--color-text-tertiary);
+      margin-top: var(--space-5);
+    }
+    .bay-source a { color: inherit; text-decoration: underline; }
+
+    /* ── CTA ────────────────────────────────────────────────── */
     .mission-cta {
       text-align: center;
       padding-block: var(--space-11);
     }
     .mission-cta h2 { margin-bottom: var(--space-5); }
     .mission-cta p  { margin-inline: auto; color: var(--color-text-secondary); margin-bottom: var(--space-7); max-width: 50ch; }
-
-    /* CTA sticker flanks */
     .mission-cta-wrap {
       display: grid;
       grid-template-columns: 240px 1fr;
@@ -130,40 +448,28 @@
       object-fit: cover;
       border-radius: var(--border-radius-lg);
       box-shadow: 0 8px 24px rgba(26,79,168,0.2);
-      transition: transform var(--duration-normal) var(--easing-bounce);
     }
     .cta-sticker--left img  { animation: float-left  6s ease-in-out infinite; }
-    .cta-sticker--right img { animation: float-right 5s ease-in-out infinite 0.8s; }
-    @keyframes float-left  {
+    @keyframes float-left {
       0%, 100% { transform: translateY(0) rotate(-3deg); }
       50%       { transform: translateY(-10px) rotate(2deg); }
     }
-    @keyframes float-right {
-      0%, 100% { transform: translateY(0) rotate(3deg); }
-      50%       { transform: translateY(-12px) rotate(-2deg); }
+
+    /* ── Responsive ─────────────────────────────────────────── */
+    @media (max-width: 900px) {
+      .crisis-grid { grid-template-columns: repeat(2, 1fr); }
     }
     @media (max-width: 768px) {
-      .mission-cta-wrap { grid-template-columns: 1fr; }
-      .cta-sticker { display: none; }
+      .pillars-grid      { grid-template-columns: 1fr; }
+      .mission-split     { grid-template-columns: 1fr !important; }
+      .breakdown-wrap    { grid-template-columns: 1fr; }
+      .donut-wrap        { margin-inline: auto; }
+      .bay-grid          { grid-template-columns: 1fr; }
+      .mission-cta-wrap  { grid-template-columns: 1fr; }
+      .cta-sticker       { display: none; }
     }
-
-    /* Seahorse photo in mission statement */
-    .mission-whale {
-      width: min(260px, 100%);
-      height: 320px;
-      object-fit: cover;
-      border-radius: var(--border-radius-xl);
-      box-shadow: 0 16px 40px rgba(15,42,94,0.25), 0 4px 12px rgba(15,42,94,0.15);
-      animation: whale-float 5s ease-in-out infinite;
-    }
-    @keyframes whale-float {
-      0%, 100% { transform: translateY(0) rotate(-2deg); }
-      50%       { transform: translateY(-14px) rotate(2deg); }
-    }
-
-    @media (max-width: 768px) {
-      .pillars-grid  { grid-template-columns: 1fr; }
-      .mission-split { grid-template-columns: 1fr !important; }
+    @media (max-width: 480px) {
+      .crisis-grid { gap: var(--space-4); }
     }
   </style>
 </head>
@@ -203,7 +509,9 @@
 
 <main id="main">
 
-  <!-- Page Hero -->
+  <!-- ────────────────────────────────────────────────────────────
+       1. PAGE HERO
+       ──────────────────────────────────────────────────────────── -->
   <section class="page-hero" aria-label="Our Mission">
     <div class="container page-hero-inner">
       <span class="eyebrow" style="color:var(--color-accent-primary)">Why We Exist</span>
@@ -218,7 +526,9 @@
     </div>
   </section>
 
-  <!-- Mission Statement -->
+  <!-- ────────────────────────────────────────────────────────────
+       2. MISSION STATEMENT
+       ──────────────────────────────────────────────────────────── -->
   <section class="section section--light">
     <div class="container">
       <div class="mission-split" style="display:grid;grid-template-columns:1fr 1fr;gap:var(--space-10);align-items:center;">
@@ -232,15 +542,17 @@
           <img src="assets/seahorse.jpg" alt="" class="mission-whale" aria-hidden="true" loading="lazy">
         </div>
       </div>
-</div>
+    </div>
   </section>
 
-  <!-- Core Values / Pillars -->
+  <!-- ────────────────────────────────────────────────────────────
+       3. THREE PILLARS
+       ──────────────────────────────────────────────────────────── -->
   <section class="section section--cream">
     <div class="container">
       <div class="section-header">
         <span class="eyebrow eyebrow--blue">Core Values</span>
-        <h2>Three pillars of action</h2>
+        <h2>Three pillars of <span class="underline-reveal">action</span></h2>
         <p>Every CoastalCleans event, partnership, and decision traces back to one of these three commitments.</p>
       </div>
       <div class="pillars-grid">
@@ -276,22 +588,232 @@
     </div>
   </section>
 
-  <!-- Impact Stats -->
-  <section class="impact-strip">
+  <!-- ────────────────────────────────────────────────────────────
+       4. MARINE CRISIS STATS
+       (replaces "Results since founding" — that section lives on index.html)
+       ──────────────────────────────────────────────────────────── -->
+  <section class="marine-crisis" aria-label="The scale of ocean plastic pollution">
     <div class="container">
-      <div class="section-header" style="margin-bottom:var(--space-8);">
-        <span class="eyebrow">Impact in Numbers</span>
-        <h2 style="color:var(--color-text-inverse)">Results since founding</h2>
+      <div class="section-header">
+        <span class="eyebrow">The Stakes</span>
+        <h2 style="color:var(--color-text-inverse)">Why <span class="underline-reveal" style="--reveal-color:var(--color-accent-primary)">plastic</span> on our shores matters</h2>
+        <p>The marine plastic crisis is measurable — and so is what happens when communities show up to fight it. These numbers are why we do this work.</p>
       </div>
-      <div class="stat-grid">
-        <div class="stat-card"><div class="stat-number">1</div><div class="stat-label">Beach Event</div></div>
-        <div class="stat-card"><div class="stat-number">60<span style="font-size:0.55em">lbs</span></div><div class="stat-label">Plastic Removed</div></div>
-        <div class="stat-card"><div class="stat-number">9</div><div class="stat-label">Volunteers</div></div>
+      <div class="crisis-grid">
+
+        <div class="crisis-card">
+          <div class="crisis-card-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
+          </div>
+          <div class="crisis-number">700<sup>+</sup></div>
+          <div class="crisis-label">Wildlife species impacted by marine debris</div>
+          <div class="crisis-sub">Including sea turtles, dolphins, and seabirds</div>
+        </div>
+
+        <div class="crisis-card">
+          <div class="crisis-card-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 8v4l3 3"/></svg>
+          </div>
+          <div class="crisis-number">80<sup>%</sup></div>
+          <div class="crisis-label">Of floating marine debris is plastic</div>
+          <div class="crisis-sub">The most common material found in ocean cleanup data</div>
+        </div>
+
+        <div class="crisis-card">
+          <div class="crisis-card-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"/></svg>
+          </div>
+          <div class="crisis-number">11M<sup>+</sup></div>
+          <div class="crisis-label">Metric tons of plastic entering oceans each year</div>
+          <div class="crisis-sub">Projected to grow without sustained intervention</div>
+        </div>
+
+        <div class="crisis-card">
+          <div class="crisis-card-icon" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/></svg>
+          </div>
+          <div class="crisis-number">32<sup>%</sup></div>
+          <div class="crisis-label">Of sea turtles found with plastic in their stomachs</div>
+          <div class="crisis-sub">All 7 sea turtle species have ingested marine debris</div>
+        </div>
+
+      </div>
+      <p class="source-block" style="color:rgba(245,241,232,0.35);border-color:rgba(255,255,255,0.08);">
+        Sources: <a href="https://marinedebris.noaa.gov/what-we-know-about-plastic-marine-debris" target="_blank" rel="noopener" style="color:rgba(245,241,232,0.35);">NOAA Marine Debris Program</a> · <a href="https://www.epa.gov/trash-free-waters/more-information-about-aquatic-trash" target="_blank" rel="noopener" style="color:rgba(245,241,232,0.35);">U.S. EPA Trash Free Waters</a> · <a href="https://marinedebris.noaa.gov/why-marine-debris-problem/ingestion" target="_blank" rel="noopener" style="color:rgba(245,241,232,0.35);">NOAA Marine Debris — Ingestion</a>
+      </p>
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────────────────────
+       5. PLASTIC BREAKDOWN — CHART SECTION
+       ──────────────────────────────────────────────────────────── -->
+  <section class="section section--light" aria-labelledby="breakdown-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow eyebrow--blue">Understanding the Problem</span>
+        <h2 id="breakdown-heading"><span class="underline-reveal">Plastic never</span> fully disappears</h2>
+        <p>Once plastic enters the ocean, it only breaks into smaller and smaller pieces — microplastics that enter the food chain at every level.</p>
+      </div>
+
+      <div class="breakdown-wrap">
+
+        <!-- Donut Chart: % of marine debris that is plastic -->
+        <figure class="donut-wrap" aria-label="Chart: 80 percent of floating marine debris is plastic">
+          <div class="donut-container">
+            <svg class="donut-svg" viewBox="0 0 200 200" role="img" aria-label="Donut chart showing 80 percent plastic, 20 percent other">
+              <title>80% of floating marine debris is plastic</title>
+              <circle class="donut-bg"   cx="100" cy="100" r="80"/>
+              <circle class="donut-fill" cx="100" cy="100" r="80"/>
+            </svg>
+            <div class="donut-center" aria-hidden="true">
+              <div class="donut-pct">80%</div>
+              <div class="donut-pct-label">of marine debris is plastic</div>
+            </div>
+          </div>
+          <div class="donut-legend" aria-hidden="true">
+            <div class="legend-item">
+              <div class="legend-dot" style="background:var(--color-accent-primary)"></div>
+              <span>Plastic (80%)</span>
+            </div>
+            <div class="legend-item">
+              <div class="legend-dot" style="background:var(--color-bg-tertiary)"></div>
+              <span>Other materials (20%)</span>
+            </div>
+          </div>
+          <figcaption style="font-size:var(--font-size-xs);color:var(--color-text-tertiary);text-align:center;max-width:20ch;">
+            Source: <a href="https://marinedebris.noaa.gov/what-marine-debris/plastic" target="_blank" rel="noopener">NOAA Marine Debris Program</a>
+          </figcaption>
+        </figure>
+
+        <!-- Species Impact Bar Chart -->
+        <div class="species-chart">
+          <p class="species-chart-title">Documented threat level by species group</p>
+          <p style="font-size:var(--font-size-sm);color:var(--color-text-secondary);margin-top:calc(var(--space-2)*-1);margin-bottom:var(--space-5);">Based on NOAA Marine Debris Program research on plastic ingestion and entanglement.</p>
+
+          <div class="species-row">
+            <div class="species-row-head">
+              <span class="species-name">Sea Turtles</span>
+              <span class="species-pct-label">All 7 species confirmed</span>
+            </div>
+            <div class="species-track" role="img" aria-label="Sea turtles: highest threat level">
+              <div class="species-bar" style="--bar-w:100%;" data-animate></div>
+            </div>
+            <span class="species-note">Plastic bags mistaken for jellyfish prey — the most documented case of debris ingestion.</span>
+          </div>
+
+          <div class="species-row">
+            <div class="species-row-head">
+              <span class="species-name">Seabirds</span>
+              <span class="species-pct-label">Widespread ingestion</span>
+            </div>
+            <div class="species-track" role="img" aria-label="Seabirds: very high threat level">
+              <div class="species-bar" style="--bar-w:90%;" data-animate></div>
+            </div>
+            <span class="species-note">Plastic fragments fed to chicks, blocking digestion and reducing survival rates.</span>
+          </div>
+
+          <div class="species-row">
+            <div class="species-row-head">
+              <span class="species-name">Marine Mammals</span>
+              <span class="species-pct-label">Ingestion &amp; entanglement</span>
+            </div>
+            <div class="species-track" role="img" aria-label="Marine mammals: high threat level">
+              <div class="species-bar" style="--bar-w:80%;" data-animate></div>
+            </div>
+            <span class="species-note">Dolphins, manatees, and whales documented with plastic in digestive systems and entangled in debris.</span>
+          </div>
+
+          <div class="species-row">
+            <div class="species-row-head">
+              <span class="species-name">Coastal Fish</span>
+              <span class="species-pct-label">Microplastic ingestion</span>
+            </div>
+            <div class="species-track" role="img" aria-label="Coastal fish: moderate-high threat level">
+              <div class="species-bar" style="--bar-w:70%;" data-animate></div>
+            </div>
+            <span class="species-note">Microplastics found in fish tissue enter the human food supply when we eat seafood.</span>
+          </div>
+
+          <p class="source-block">
+            Data: <a href="https://marinedebris.noaa.gov/why-marine-debris-problem/ingestion" target="_blank" rel="noopener">NOAA Marine Debris Program — Ingestion</a> ·
+            <a href="https://oceanservice.noaa.gov/hazards/marinedebris/plastics-in-the-ocean.html" target="_blank" rel="noopener">NOAA Ocean Service — Guide to Plastic in the Ocean</a>
+          </p>
+        </div>
+
       </div>
     </div>
   </section>
 
-  <!-- CTA -->
+  <!-- ────────────────────────────────────────────────────────────
+       6. TAMPA BAY CONTEXT
+       ──────────────────────────────────────────────────────────── -->
+  <section class="section section--cream" aria-labelledby="bay-heading">
+    <div class="container">
+      <div class="section-header">
+        <span class="eyebrow eyebrow--blue">Local Impact</span>
+        <h2 id="bay-heading">Why <span class="underline-reveal">Tampa Bay</span> is ground zero</h2>
+        <p>Plastic pollution doesn't start in the ocean — it starts on land. Tampa Bay's coastlines sit at the end of a 2-million-person watershed, making local cleanups one of the most effective interventions possible.</p>
+      </div>
+
+      <div class="bay-grid">
+
+        <ul class="bay-facts">
+          <li class="bay-fact">
+            <div class="bay-fact-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 9l9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/></svg>
+            </div>
+            <div class="bay-fact-body">
+              <strong>~80% of ocean plastic begins on land</strong>
+              <p>Litter from Hillsborough County streets flows through storm drains → Hillsborough River → Tampa Bay → Gulf of Mexico. Shoreline cleanups intercept it before it disperses.</p>
+            </div>
+          </li>
+          <li class="bay-fact">
+            <div class="bay-fact-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
+            </div>
+            <div class="bay-fact-body">
+              <strong>2 million+ people in the watershed</strong>
+              <p>Tampa Bay's watershed covers Hillsborough, Pinellas, Manatee, and Pasco Counties. Every resident is upstream of the bay — and every action (or inaction) reaches it.</p>
+            </div>
+          </li>
+          <li class="bay-fact">
+            <div class="bay-fact-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg>
+            </div>
+            <div class="bay-fact-body">
+              <strong>Single-use plastic is the primary target</strong>
+              <p>The Tampa Bay Estuary Program's Trash Free Waters initiative identified reducing single-use plastics as the #1 strategy for the Tampa Bay watershed — the same category we collect most in cleanups.</p>
+            </div>
+          </li>
+          <li class="bay-fact">
+            <div class="bay-fact-icon" aria-hidden="true">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><polyline points="22 4 12 14.01 9 11.01"/></svg>
+            </div>
+            <div class="bay-fact-body">
+              <strong>Cleanups are the most cost-effective intervention</strong>
+              <p>Removing plastic from shores before it breaks into microplastics in the water is far more effective than trying to filter the open ocean. That's what we do — at the source.</p>
+            </div>
+          </li>
+        </ul>
+
+        <div class="bay-callout-card">
+          <h3>The Tampa Bay watershed is watching</h3>
+          <p>Tampa Bay is one of Florida's most ecologically significant estuaries — home to sea turtles, West Indian manatees, bottlenose dolphins, seahorses, and hundreds of bird species. Its seagrass meadows and mangrove shorelines depend on clean water.</p>
+          <p>Since 2019, the Tampa Bay Estuary Program (TBEP) has operated a federally supported Trash Free Waters initiative, deploying 12 litter collection devices across Hillsborough, Pinellas, and Manatee Counties. Their data confirms what CoastalCleans sees firsthand: plastic dominates, and local action works.</p>
+          <p>The data TBEP gathered from Tampa Bay has already been used to build a <em>Litter Management Plan Template</em> adopted by other Gulf communities — proving that what happens here echoes far beyond our shoreline.</p>
+          <p class="bay-source">
+            Source: <a href="https://tbep.org/trash-free-waters/" target="_blank" rel="noopener">Tampa Bay Estuary Program — Trash Free Waters</a> ·
+            <a href="https://www.noaa.gov/education/resource-collections/ocean-coasts/ocean-pollution" target="_blank" rel="noopener">NOAA Ocean Pollution Resource Collection</a>
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ────────────────────────────────────────────────────────────
+       7. CTA
+       ──────────────────────────────────────────────────────────── -->
   <section class="section section--cream">
     <div class="container mission-cta">
       <div class="mission-cta-wrap">
@@ -347,5 +869,26 @@
 
 <script src="js/nav.js" defer></script>
 <script src="js/theme.js" defer></script>
+<script>
+  // Scroll-triggered animations for underlines, donut chart, and bar charts
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('is-visible');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.35 });
+
+  // Underline reveal spans
+  document.querySelectorAll('.underline-reveal').forEach(el => observer.observe(el));
+
+  // Donut chart ring
+  const donutFill = document.querySelector('.donut-fill');
+  if (donutFill) observer.observe(donutFill);
+
+  // Species bar fills — observe the track's parent row so bars animate together
+  document.querySelectorAll('.species-bar[data-animate]').forEach(bar => observer.observe(bar));
+</script>
 </body>
 </html>

@@ -32,17 +32,30 @@ Complete breakdown of every page on the CoastalCleans site. Useful when editing 
 
 **Route:** `/mission.html`
 
-**Sections:**
-1. **Page hero** — banner with headline
+**Sections (as of 2026-05-27 redesign):**
+1. **Page hero** — banner with headline + wave SVG divider
 2. **Mission statement** — `.mission-split` grid (text + `assets/seahorse.jpg` floating right)
-3. **Impact strip** — same 3 stats as index.html (keep in sync)
-4. **Join the mission CTA** — `assets/fish.jpg` floating left
-5. **Footer**
+3. **Three pillars** — Clean / Protect / Educate cards (`section--cream`)
+4. **Marine Crisis Stats** — Dark navy `.marine-crisis` section; 4 stat cards: 700+ species, 80% plastic, 11M+ metric tons, 32% turtles. Source: NOAA Marine Debris Program + EPA.
+5. **Plastic Breakdown** — SVG donut chart (80% plastic) + CSS species bar chart (`section--light`)
+6. **Tampa Bay Context** — Local facts list + callout card referencing TBEP Trash Free Waters data (`section--cream`)
+7. **Join the mission CTA** — `assets/fish.jpg` floating left
+8. **Footer**
+
+**Removed:** The old "Results since founding" impact strip (1 beach · 60 lbs · 9 volunteers) — this section was removed because it duplicates `index.html`. Stats remain on index.html.
 
 **Key patterns:**
 - `.mission-split` — `display:grid;grid-template-columns:1fr 1fr`, collapses to `1fr` at ≤768px
-- Both animal images use `.float` class → `manatee-float` keyframes
-- Floating variants (`.mission-whale`, `.hero-sticker`) defined in inline `<style>`
+- `.underline-reveal` — scrolling teal underline on key heading words (IntersectionObserver + CSS background-size animation)
+- `.donut-fill` — SVG ring chart, animated via `stroke-dashoffset` on scroll (r=80, circumference≈502.65, 80% → offset=100.53)
+- `.species-bar[data-animate]` — CSS horizontal bars animated via `width: var(--bar-w)` on scroll
+- All animations respect `prefers-reduced-motion`
+- `.mission-whale` — `.mission-whale` floating keyframe on seahorse image
+- Scroll animations triggered by single `IntersectionObserver` at bottom of `<body>`
+
+**Research sources used:**
+- [[../../../03 Resources/Research/Marine Life Statistics|Marine Life Statistics]] — NOAA/EPA data for stat cards + charts
+- [[../../../03 Resources/Research/Tampa Bay Coastal Data|Tampa Bay Coastal Data]] — TBEP + Florida DEP data for bay context section
 
 ---
 
