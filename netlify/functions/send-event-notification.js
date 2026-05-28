@@ -21,7 +21,7 @@ exports.handler = async function (event) {
   }
 
   const listId = parseInt(process.env.BREVO_LIST_ID || '2', 10);
-  const siteUrl = process.env.SITE_URL || 'https://coastalcleans.org';
+  const siteUrl = process.env.SITE_URL;
 
   const htmlContent = `
     <div style="font-family:'Lato',Arial,sans-serif;max-width:600px;margin:0 auto;padding:32px 24px;background:#f5f1e8;">

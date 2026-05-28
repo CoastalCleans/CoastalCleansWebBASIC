@@ -14,7 +14,7 @@ exports.handler = async function (event) {
     return { statusCode: 400, body: JSON.stringify({ error: 'Invalid request body' }) };
   }
 
-  const origin = event.headers.origin || process.env.SITE_URL || 'https://coastalcleans.org';
+  const origin = event.headers.origin || process.env.SITE_URL;
 
   try {
     const session = await stripe.checkout.sessions.create({
