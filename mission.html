@@ -22,6 +22,10 @@
   <link rel="stylesheet" href="css/nav.css">
   <link rel="stylesheet" href="css/footer.css">
   <style>
+    /* ── Spacing overrides (tighten global 96px section padding) ── */
+    .section { padding-block: var(--space-8); }          /* 96px → 48px */
+    .section-header { margin-bottom: var(--space-7); }   /* 64px → 32px */
+
     /* ── Page Hero ──────────────────────────────────────────── */
     .page-hero {
       background: linear-gradient(150deg, var(--raw-blue-900) 0%, var(--raw-blue-700) 100%);
@@ -86,8 +90,8 @@
     .pillars-grid {
       display: grid;
       grid-template-columns: repeat(3, 1fr);
-      gap: var(--space-7);
-      margin-top: var(--space-9);
+      gap: var(--space-6);
+      margin-top: var(--space-7);
     }
     .pillar-card {
       background: var(--card-bg);
@@ -126,7 +130,7 @@
     /* ── Marine Crisis Stats ────────────────────────────────── */
     .marine-crisis {
       background: linear-gradient(160deg, var(--raw-blue-900) 0%, var(--raw-blue-800) 100%);
-      padding-block: var(--space-11);
+      padding-block: var(--space-8);
       position: relative;
       overflow: hidden;
     }
@@ -146,7 +150,7 @@
       display: grid;
       grid-template-columns: repeat(4, 1fr);
       gap: var(--space-6);
-      margin-top: var(--space-9);
+      margin-top: var(--space-7);
       position: relative;
       z-index: 1;
     }
@@ -209,9 +213,9 @@
     .breakdown-wrap {
       display: grid;
       grid-template-columns: 240px 1fr;
-      gap: var(--space-12);
+      gap: var(--space-9);
       align-items: center;
-      margin-top: var(--space-9);
+      margin-top: var(--space-7);
     }
 
     /* Donut chart */
@@ -344,7 +348,7 @@
       color: var(--color-text-tertiary);
       border-top: 1px solid var(--color-border-secondary);
       padding-top: var(--space-6);
-      margin-top: var(--space-9);
+      margin-top: var(--space-6);
       line-height: var(--line-height-relaxed);
     }
     .source-block a {
@@ -357,9 +361,9 @@
     .bay-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
-      gap: var(--space-10);
+      gap: var(--space-8);
       align-items: start;
-      margin-top: var(--space-9);
+      margin-top: var(--space-7);
     }
     .bay-facts {
       list-style: none;
@@ -427,7 +431,6 @@
     /* ── CTA ────────────────────────────────────────────────── */
     .mission-cta {
       text-align: center;
-      padding-block: var(--space-11);
     }
     .mission-cta h2 { margin-bottom: var(--space-5); }
     .mission-cta p  { margin-inline: auto; color: var(--color-text-secondary); margin-bottom: var(--space-7); max-width: 50ch; }
