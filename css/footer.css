@@ -89,6 +89,17 @@
   color: rgba(245,241,232,0.4);
   max-width: none;
 }
+.footer-legal {
+  font-size: var(--font-size-xs);
+  color: rgba(245,241,232,0.4);
+  max-width: none;
+}
+.footer-legal a {
+  color: rgba(245,241,232,0.55);
+  text-decoration: none;
+  transition: color var(--duration-fast) var(--easing-default);
+}
+.footer-legal a:hover { color: var(--color-text-inverse); }
 
 /* Theme toggle */
 .theme-toggle {
