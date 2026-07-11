@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="light">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Blog — CoastalCleans</title>
+  <meta name="description" content="Stories from CoastalCleans volunteers and the coastlines we protect together.">
+  <link rel="canonical" href="https://coastalcleans.org/blog.html">
+  <meta property="og:title" content="Blog — CoastalCleans">
+  <meta property="og:description" content="Stories from CoastalCleans volunteers and the coastlines we protect together.">
+  <meta property="og:image" content="https://coastalcleans.org/assets/logo.jpg">
+  <meta property="og:url" content="https://coastalcleans.org/blog.html">
+  <meta property="og:type" content="website">
+  <link rel="icon" type="image/png" sizes="32x32" href="assets/favicon-32.png">
+  <link rel="icon" type="image/png" sizes="64x64" href="assets/favicon-64.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,300;0,400;0,700;0,900;1,400&display=swap"></noscript>
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Saira+Stencil+One&family=Smooch+Sans:wght@400;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+  <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Saira+Stencil+One&family=Smooch+Sans:wght@400;700&display=swap"></noscript>
+  <link rel="stylesheet" href="css/tokens.css">
+  <link rel="stylesheet" href="css/global.css">
+  <link rel="stylesheet" href="css/nav.css">
+  <link rel="stylesheet" href="css/footer.css">
+  <style>
+    .page-hero {
+      background: linear-gradient(150deg, var(--raw-blue-900) 0%, var(--raw-blue-700) 100%);
+      padding: var(--space-12) 0 0;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .page-hero h1 { color: var(--color-text-inverse); margin-bottom: var(--space-5); }
+    .page-hero p  { color: rgba(245,241,232,0.8); font-size: var(--font-size-md); max-width: 52ch; margin-inline: auto; }
+
+    /* Submit CTA — small, right-aligned above the story grid */
+    .blog-toolbar { display: flex; justify-content: flex-end; }
+    .blog-submit-cta {
+      max-width: 260px;
+      background: var(--card-bg);
+      border: var(--card-border);
+      border-radius: var(--border-radius-md);
+      box-shadow: var(--shadow-sm);
+      padding: var(--space-3) var(--space-5);
+      font-size: var(--font-size-xs);
+      color: var(--color-text-secondary);
+      text-align: right;
+    }
+    .blog-submit-cta a { font-weight: var(--font-weight-semibold); }
+
+    .blog-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: var(--space-6);
+      margin-top: var(--space-7);
+    }
+
+    .story-card {
+      position: relative;
+      border: 2px solid var(--color-accent-secondary);
+      border-radius: var(--border-radius-lg);
+      background: var(--card-bg);
+      padding: var(--space-6);
+      cursor: pointer;
+      transition: box-shadow var(--duration-fast) var(--easing-default),
+                  transform var(--duration-fast) var(--easing-default);
+    }
+    .story-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+
+    .story-date {
+      position: absolute;
+      top: var(--space-4);
+      right: var(--space-5);
+      font-family: 'Saira Stencil One', var(--font-family-display);
+      font-size: var(--font-size-xs);
+      letter-spacing: var(--letter-spacing-wide);
+      color: var(--color-text-secondary);
+    }
+    .story-title {
+      font-family: 'Smooch Sans', var(--font-family-display);
+      font-size: var(--font-size-xl);
+      text-align: center;
+      margin-top: var(--space-7);
+      color: var(--color-text-primary);
+    }
+    .story-excerpt {
+      text-align: center;
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      margin-top: var(--space-3);
+    }
+
+    /* Full post — Playfair Display, hidden until opened */
+    .story-full { display: none; font-family: 'Playfair Display', serif; cursor: auto; }
+    .story-card.is-open .story-preview { display: none; }
+    .story-card.is-open .story-full { display: block; }
+    .story-card.is-open {
+      grid-column: 1 / -1;
+      cursor: auto;
+    }
+    .story-author {
+      position: absolute;
+      top: var(--space-4);
+      right: var(--space-5);
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+    }
+    .story-full h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: var(--font-size-2xl);
+      margin-bottom: var(--space-2);
+    }
+    .story-full .story-full-date {
+      font-size: var(--font-size-sm);
+      color: var(--color-text-secondary);
+      margin-bottom: var(--space-5);
+    }
+    .story-full .story-full-body p { margin-bottom: var(--space-4); max-width: none; }
+
+    /* Works Cited — boxed off, distinct from body text */
+    .story-citations {
+      font-family: 'Playfair Display', serif;
+      border: 1px solid var(--color-border-primary);
+      border-radius: var(--border-radius-md);
+      background: var(--color-bg-tertiary);
+      padding: var(--space-5) var(--space-6);
+      margin-top: var(--space-6);
+    }
+    .story-citations h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: var(--font-size-base);
+      font-style: italic;
+      margin-bottom: var(--space-3);
+    }
+    .story-citations ol { padding-left: var(--space-6); }
+    .story-citations li { font-size: var(--font-size-sm); margin-bottom: var(--space-2); }
+    .story-citations a { word-break: break-word; }
+
+    .story-close {
+      margin-top: var(--space-5);
+      background: none;
+      border: 1px solid var(--color-border-primary);
+      border-radius: var(--border-radius-md);
+      padding: var(--space-2) var(--space-5);
+      font-family: var(--font-family-body);
+      font-size: var(--font-size-sm);
+      cursor: pointer;
+      color: var(--color-text-secondary);
+    }
+    .story-close:hover { color: var(--color-text-link); }
+
+    .blog-empty {
+      display: none;
+      text-align: center;
+      color: var(--color-text-secondary);
+      margin-top: var(--space-9);
+    }
+
+    @media (max-width: 640px) {
+      .blog-submit-cta { max-width: none; width: 100%; text-align: left; }
+    }
+  </style>
+</head>
+<body>
+
+<a href="#main" class="skip-link">Skip to content</a>
+
+<header class="site-nav" id="site-header">
+  <div class="nav-inner container">
+    <a href="index.html" class="nav-logo-link" aria-label="CoastalCleans — Home">
+      <img src="assets/logo.jpg" alt="CoastalCleans logo" class="nav-logo" width="44" height="44">
+    </a>
+    <nav class="nav-links" aria-label="Main navigation">
+      <a href="mission.html"      class="nav-link">Our Mission</a>
+      <a href="team.html"         class="nav-link">Our Team</a>
+      <a href="get-involved.html" class="nav-link">Get Involved</a>
+      <a href="history.html"      class="nav-link">Our History</a>
+      <a href="contact.html"      class="nav-link">Contact Us</a>
+      <a href="blog.html"         class="nav-link">Blog</a>
+    </nav>
+    <a href="donate.html" class="cta-pill nav-cta">Donate</a>
+    <button class="nav-burger" aria-label="Open navigation menu" aria-expanded="false" aria-controls="nav-drawer">
+      <span class="burger-bar"></span><span class="burger-bar"></span><span class="burger-bar"></span>
+    </button>
+  </div>
+</header>
+<div class="nav-drawer" id="nav-drawer" aria-hidden="true" role="dialog" aria-label="Mobile navigation">
+  <nav class="drawer-links">
+    <a href="mission.html"      class="drawer-link">Our Mission</a>
+    <a href="team.html"         class="drawer-link">Our Team</a>
+    <a href="get-involved.html" class="drawer-link">Get Involved</a>
+    <a href="history.html"      class="drawer-link">Our History</a>
+    <a href="contact.html"      class="drawer-link">Contact Us</a>
+    <a href="blog.html"         class="drawer-link">Blog</a>
+  </nav>
+  <a href="donate.html" class="cta-pill drawer-cta">Donate</a>
+</div>
+<div class="nav-overlay" id="nav-overlay" aria-hidden="true"></div>
+
+<main id="main">
+
+  <section class="page-hero" aria-label="Blog">
+    <div class="container">
+      <span class="eyebrow" style="color:var(--color-accent-primary)">From the Coast</span>
+      <h1>Blog</h1>
+      <p>Stories from our volunteers, our cleanups, and the coastline we share.</p>
+    </div>
+    <div style="margin-top:var(--space-9);">
+      <svg viewBox="0 0 1440 80" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="none" style="display:block;width:100%;" aria-hidden="true">
+        <path d="M0,50 C480,90 960,10 1440,50 L1440,80 L0,80 Z" fill="var(--color-bg-secondary)" opacity="0.5"/>
+        <path d="M0,35 C540,80 900,5 1440,35 L1440,80 L0,80 Z" fill="var(--color-bg-secondary)"/>
+      </svg>
+    </div>
+  </section>
+
+  <section class="section section--light">
+    <div class="container blog-content">
+
+      <div class="blog-toolbar">
+        <div class="blog-submit-cta">
+          Want to submit your own stories and get credit?
+          <a href="mailto:hq@coastalcleans.org">Email hq@coastalcleans.org</a>
+        </div>
+      </div>
+
+      <div class="blog-grid" id="blog-grid">
+        <!-- BLOG_POSTS_START -->
+        <article class="story-card" data-date="2026-06-05">
+          <div class="story-preview">
+            <span class="story-date">Jun 5, 2026</span>
+            <h3 class="story-title">What World Environmental Day Reveals About Plastic Pollution</h3>
+            <p class="story-excerpt">World Environment Day passed, but the real story is the microplastics we've learned to overlook.</p>
+          </div>
+          <div class="story-full">
+            <span class="story-author">By Elizabeth Chojnacki</span>
+            <h2>What World Environmental Day Reveals About Plastic Pollution</h2>
+            <p class="story-full-date">Jun 5, 2026</p>
+            <div class="story-full-body">
+              <p>World Environment Day may have passed, but the conversations it sparks should not be confined to a single date on the calendar. Established by the United Nations in 1972, the annual observance serves as a reminder that environmental issues are not isolated events but rather ongoing challenges that shape the future of our communities, economies, and ecosystems.</p>
+              <p>This year, rather than focusing on what we can see along our shorelines, it is worth examining what often goes unnoticed: microplastics.</p>
+              <p>Microplastics are plastic particles smaller than five millimeters in diameter, typically formed as larger plastic items degrade over time. Unlike the water bottle washed ashore after a storm or the plastic bag tangled in mangroves, microplastics are largely invisible to the naked eye. Yet their impact may be far more pervasive.</p>
+              <p>Researchers have identified microplastics in some of the planet's most remote environments, from Arctic snow to the deepest ocean trenches. More recently, studies have detected these particles in human blood, lung tissue, and placental tissue, underscoring the extent to which plastic pollution has become embedded in both natural and human systems.</p>
+              <p>What makes microplastic pollution particularly concerning is its persistence. A piece of plastic discarded today may eventually disappear from sight, but it rarely disappears from the environment. Instead, it fragments into smaller and smaller particles, creating a problem that becomes increasingly difficult to monitor and address.</p>
+              <p>World Environment Day challenges us to move beyond awareness and toward understanding. While images of littered beaches often dominate environmental campaigns, the most consequential threats are not always the most visible. Sometimes, the greatest environmental challenge is not what we can see, but what we have learned to overlook.</p>
+              <p>While no single cleanup can solve the global plastic crisis, local action remains one of the most powerful tools for change. Every plastic bottle, food wrapper, and discarded fishing line removed from our coastlines is one less item that can break down into thousands of microplastic particles. By participating in Coastal Cleans events, volunteers are not simply picking up litter but they are helping prevent future pollution, protect marine ecosystems, and preserve the health of our oceans for generations to come. Environmental stewardship begins with awareness, but it is sustained through action.</p>
+            </div>
+            <div class="story-citations">
+              <h3>Works Cited</h3>
+              <ol>
+                <li>United Nations Environment Programme. World Environment Day. <a href="https://www.unep.org" target="_blank" rel="noopener">https://www.unep.org</a></li>
+                <li>National Oceanic and Atmospheric Administration. What are Microplastics? <a href="https://oceanservice.noaa.gov/facts/microplastics.html" target="_blank" rel="noopener">https://oceanservice.noaa.gov/facts/microplastics.html</a></li>
+                <li>World Health Organization. Microplastics in Drinking-water. <a href="https://www.who.int" target="_blank" rel="noopener">https://www.who.int</a></li>
+              </ol>
+            </div>
+            <button class="story-close" type="button">Close</button>
+          </div>
+        </article>
+        <!-- BLOG_POSTS_END -->
+      </div>
+
+      <p class="blog-empty" id="blog-empty">No stories yet — check back soon, or be the first to submit one.</p>
+
+    </div>
+  </section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="footer-inner container">
+    <div class="footer-brand">
+      <a href="index.html" aria-label="CoastalCleans — Home"><img src="assets/logo.jpg" alt="CoastalCleans" class="footer-logo" width="52" height="52"></a>
+      <p class="footer-tagline">Cleaning coastlines,<br>saving sea life.</p>
+    </div>
+    <nav class="footer-nav" aria-label="Footer navigation">
+      <p class="footer-col-heading">Navigation</p>
+      <a href="mission.html">Our Mission</a><a href="team.html">Our Team</a>
+      <a href="get-involved.html">Get Involved</a><a href="history.html">Our History</a>
+      <a href="contact.html">Contact Us</a><a href="donate.html">Donate</a>
+    </nav>
+    <div class="footer-social">
+      <p class="footer-col-heading">Follow Us</p>
+      <div class="social-icons">
+        <a href="https://www.instagram.com/coastal.cleanss/" class="social-icon" aria-label="CoastalCleans on Instagram" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg></a>
+        <a href="https://www.linkedin.com/company/coastal-cleans/" class="social-icon" aria-label="CoastalCleans on LinkedIn" target="_blank" rel="noopener"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></a>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p class="footer-ein">EIN 42-2066717 &middot; 501(c)(3) Nonprofit</p>
+    <p class="footer-legal"><a href="privacy.html">Privacy Policy</a> &middot; <a href="terms.html">Terms &amp; Conditions</a></p>
+    <p class="footer-email"><a href="mailto:hq@coastalcleans.org">hq@coastalcleans.org</a></p>
+    <button class="theme-toggle" id="theme-toggle" aria-label="Switch to dark mode" aria-pressed="false" type="button">
+      <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="5"/><line x1="12" y1="1" x2="12" y2="3"/><line x1="12" y1="21" x2="12" y2="23"/><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"/><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"/><line x1="1" y1="12" x2="3" y2="12"/><line x1="21" y1="12" x2="23" y2="12"/><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"/><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"/></svg>
+      <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+    </button>
+  </div>
+</footer>
+
+<script src="js/nav.js" defer></script>
+<script src="js/blog.js" defer></script>
+<script src="js/theme.js" defer></script>
+</body>
+</html>
